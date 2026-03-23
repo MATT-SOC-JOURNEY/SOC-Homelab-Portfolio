@@ -45,7 +45,8 @@ A custom-built reference tool compiling essential blue team resources including 
 - Kali Linux, netexec (used for brute force simulation)
 - VirusTotal, AbuseIPDB, MXToolbox, URLScan.io, ScamNumbers.info
 - TryHackMe — Sapphire League
-- LetsDefend, Cisco Networking Academy
+- LetsDefend
+- Cisco Networking Academy
 
 ---
 
