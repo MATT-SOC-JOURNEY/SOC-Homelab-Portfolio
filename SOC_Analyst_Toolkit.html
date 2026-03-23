@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOC Analyst Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=Exo+2:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060a0f;
+    --panel: #0b1219;
+    --border: #0f2535;
+    --accent: #00d4ff;
+    --accent2: #ff6b35;
+    --accent3: #39ff14;
+    --text: #c8dde8;
+    --muted: #4a6070;
+    --card: #0d1a24;
+    --glow: 0 0 20px rgba(0,212,255,0.15);
+    --glow-green: 0 0 20px rgba(57,255,20,0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Exo 2', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Scanline effect */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.05) 2px,
+      rgba(0,0,0,0.05) 4px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  /* HEADER */
+  header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-left {}
+
+  .terminal-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--accent3);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .terminal-tag::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--accent3);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    line-height: 1;
+    color: #fff;
+  }
+
+  h1 span {
+    color: var(--accent);
+    text-shadow: 0 0 30px rgba(0,212,255,0.5);
+  }
+
+  .subtitle {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--muted);
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 2px;
+  }
+
+  .status-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .clock {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 28px;
+    color: var(--accent);
+    text-shadow: 0 0 20px rgba(0,212,255,0.4);
+    letter-spacing: 3px;
+  }
+
+  .date-display {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+  }
+
+  .status-indicators {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  .indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .indicator .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  .dot.green { background: var(--accent3); box-shadow: 0 0 8px var(--accent3); }
+  .dot.blue { background: var(--accent); box-shadow: 0 0 8px var(--accent); animation-delay: 0.5s; }
+  .dot.orange { background: var(--accent2); box-shadow: 0 0 8px var(--accent2); animation-delay: 1s; }
+
+  /* SEARCH BAR */
+  .search-wrapper {
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .search-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0 20px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .search-box:focus-within {
+    border-color: var(--accent);
+    box-shadow: var(--glow);
+  }
+
+  .search-prefix {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--accent);
+    font-size: 14px;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+
+  .search-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+    padding: 16px 0;
+    letter-spacing: 1px;
+  }
+
+  .search-input::placeholder {
+    color: var(--muted);
+  }
+
+  .search-hint {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-left: 16px;
+    flex-shrink: 0;
+    letter-spacing: 1px;
+  }
+
+  /* SECTION LABELS */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+  }
+
+  .section-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .section-accent {
+    color: var(--accent);
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+  }
+
+  .section-count {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  /* TOOL GRID */
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .tool-grid.wide {
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  }
+
+  /* TOOL CARD */
+  .tool-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    animation: fadeIn 0.4s ease forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .tool-card:nth-child(1) { animation-delay: 0.05s; }
+  .tool-card:nth-child(2) { animation-delay: 0.1s; }
+  .tool-card:nth-child(3) { animation-delay: 0.15s; }
+  .tool-card:nth-child(4) { animation-delay: 0.2s; }
+  .tool-card:nth-child(5) { animation-delay: 0.25s; }
+  .tool-card:nth-child(6) { animation-delay: 0.3s; }
+  .tool-card:nth-child(7) { animation-delay: 0.35s; }
+  .tool-card:nth-child(8) { animation-delay: 0.4s; }
+
+  .tool-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--card-accent, var(--accent)), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .tool-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--card-accent, var(--accent));
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px var(--card-accent, var(--accent)) inset;
+  }
+
+  .tool-card:hover::before { opacity: 1; }
+
+  /* Card accent colors per category */
+  .cat-threat { --card-accent: #00d4ff; }
+  .cat-email { --card-accent: #ff6b35; }
+  .cat-network { --card-accent: #39ff14; }
+  .cat-intel { --card-accent: #bf5fff; }
+  .cat-reference { --card-accent: #ffd700; }
+  .cat-osint { --card-accent: #ff4757; }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    flex-shrink: 0;
+  }
+
+  .card-badge {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.05);
+    color: var(--card-accent, var(--accent));
+    border: 1px solid currentColor;
+    opacity: 0.8;
+  }
+
+  .card-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .card-url {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--card-accent, var(--accent));
+    opacity: 0.6;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
+
+  .tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    padding: 2px 7px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+  }
+
+  .card-arrow {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    font-size: 14px;
+    color: var(--card-accent, var(--accent));
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .tool-card:hover .card-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* QUICK REFERENCE PANEL */
+  .quick-ref {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px;
+    margin-top: 8px;
+  }
+
+  .ref-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 16px;
+  }
+
+  .ref-group h4 {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ref-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+
+  .ref-id {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--accent3);
+    font-weight: bold;
+    min-width: 50px;
+  }
+
+  .ref-desc {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: right;
+    font-weight: 300;
+  }
+
+  /* FOOTER */
+  footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 2px;
+  }
+
+  .footer-accent {
+    color: var(--accent);
+  }
+
+  /* FILTER TABS */
+  .filter-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  .filter-tab {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 2px;
+    border: 1px solid var(--border);
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-tab:hover, .filter-tab.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(0,212,255,0.05);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    h1 { font-size: 32px; }
+    .clock { font-size: 20px; }
+    header { flex-direction: column; gap: 20px; }
+    .status-bar { align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-left">
+      <div class="terminal-tag">SYSTEM ONLINE — HOME SOC LAB</div>
+      <h1>SOC <span>ANALYST</span> TOOLKIT</h1>
+      <div class="subtitle">// THREAT INTELLIGENCE & INVESTIGATION RESOURCES</div>
+    </div>
+    <div class="status-bar">
+      <div class="clock" id="clock">00:00:00</div>
+      <div class="date-display" id="date">INITIALIZING...</div>
+      <div class="status-indicators">
+        <div class="indicator"><span class="dot green"></span>SIEM ACTIVE</div>
+        <div class="indicator"><span class="dot blue"></span>FORWARDERS ONLINE</div>
+        <div class="indicator"><span class="dot orange"></span>KALI READY</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SEARCH BAR -->
+  <div class="search-wrapper">
+    <div class="search-label">// QUICK SEARCH TOOLS</div>
+    <div class="search-box">
+      <span class="search-prefix">analyst@soc:~$</span>
+      <input class="search-input" type="text" id="searchInput" placeholder="filter tools by name, category, or tag..." oninput="filterTools()">
+      <span class="search-hint">PRESS ENTER TO CLEAR</span>
+    </div>
+  </div>
+
+  <!-- FILTER TABS -->
+  <div class="filter-tabs">
+    <button class="filter-tab active" onclick="filterCategory('all', this)">ALL TOOLS</button>
+    <button class="filter-tab" onclick="filterCategory('threat', this)">THREAT INTEL</button>
+    <button class="filter-tab" onclick="filterCategory('email', this)">EMAIL / PHISHING</button>
+    <button class="filter-tab" onclick="filterCategory('network', this)">NETWORK / IP</button>
+    <button class="filter-tab" onclick="filterCategory('intel', this)">INTELLIGENCE</button>
+    <button class="filter-tab" onclick="filterCategory('reference', this)">REFERENCE</button>
+    <button class="filter-tab" onclick="filterCategory('osint', this)">OSINT</button>
+  </div>
+
+  <!-- THREAT INTEL TOOLS -->
+  <div class="section-header" data-section="threat">
+    <span class="section-label"><span class="section-accent">01 //</span> THREAT INTELLIGENCE</span>
+    <div class="section-line"></div>
+    <span class="section-count">4 TOOLS</span>
+  </div>
+  <div class="tool-grid" id="threat-grid">
+
+    <a href="https://www.virustotal.com" target="_blank" class="tool-card cat-threat" data-category="threat" data-tags="ioc hash url domain ip malware scan">
+      <div class="card-top">
+        <div class="card-icon">🛡️</div>
+        <div class="card-badge">PRIMARY</div>
+      </div>
+      <div class="card-name">VirusTotal</div>
+      <div class="card-url">virustotal.com</div>
+      <div class="card-desc">Submit URLs, domains, IPs, file hashes, and email addresses for analysis across 90+ AV engines. Core IOC verification tool for every investigation.</div>
+      <div class="card-tags">
+        <span class="tag">IOC</span><span class="tag">HASH</span><span class="tag">URL</span><span class="tag">DOMAIN</span><span class="tag">IP</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://attack.mitre.org" target="_blank" class="tool-card cat-threat" data-category="threat" data-tags="mitre att&ck framework tactics techniques procedures ttp">
+      <div class="card-top">
+        <div class="card-icon">⚔️</div>
+        <div class="card-badge">FRAMEWORK</div>
+      </div>
+      <div class="card-name">MITRE ATT&CK</div>
+      <div class="card-url">attack.mitre.org</div>
+      <div class="card-desc">The definitive adversary tactics and techniques framework. Map observed attack behavior to ATT&CK techniques for every investigation and report.</div>
+      <div class="card-tags">
+        <span class="tag">TTPs</span><span class="tag">TACTICS</span><span class="tag">TECHNIQUES</span><span class="tag">MAPPING</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://www.abuseipdb.com" target="_blank" class="tool-card cat-threat" data-category="threat" data-tags="ip abuse reputation malicious reported">
+      <div class="card-top">
+        <div class="card-icon">🔍</div>
+        <div class="card-badge">IP INTEL</div>
+      </div>
+      <div class="card-name">AbuseIPDB</div>
+      <div class="card-url">abuseipdb.com</div>
+      <div class="card-desc">Check whether an IP address has been reported for abuse, spam, or malicious activity. Cross-reference with VirusTotal for complete IP reputation picture.</div>
+      <div class="card-tags">
+        <span class="tag">IP</span><span class="tag">ABUSE</span><span class="tag">REPUTATION</span><span class="tag">REPORTING</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://otx.alienvault.com" target="_blank" class="tool-card cat-threat" data-category="threat" data-tags="threat intel otx pulse ioc community indicators">
+      <div class="card-top">
+        <div class="card-icon">📡</div>
+        <div class="card-badge">COMMUNITY</div>
+      </div>
+      <div class="card-name">AlienVault OTX</div>
+      <div class="card-url">otx.alienvault.com</div>
+      <div class="card-desc">Open Threat Exchange — community-driven threat intelligence platform. Search IOCs across community-submitted threat pulses and campaigns.</div>
+      <div class="card-tags">
+        <span class="tag">IOC</span><span class="tag">CAMPAIGNS</span><span class="tag">PULSES</span><span class="tag">COMMUNITY</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+  </div>
+
+  <!-- EMAIL / PHISHING TOOLS -->
+  <div class="section-header" data-section="email">
+    <span class="section-label"><span class="section-accent">02 //</span> EMAIL & PHISHING ANALYSIS</span>
+    <div class="section-line"></div>
+    <span class="section-count">7 TOOLS</span>
+  </div>
+  <div class="tool-grid" id="email-grid">
+
+    <a href="https://mha.azurewebsites.net" target="_blank" class="tool-card cat-email" data-category="email" data-tags="email header analysis microsoft mha parser">
+      <div class="card-top">
+        <div class="card-icon">📧</div>
+        <div class="card-badge">HEADER</div>
+      </div>
+      <div class="card-name">MHA Header Analyzer</div>
+      <div class="card-url">mha.azurewebsites.net</div>
+      <div class="card-desc">Microsoft Header Analyzer — paste raw email headers for visual parsing of SPF, DKIM, DMARC results, hop-by-hop routing, and originating server details.</div>
+      <div class="card-tags">
+        <span class="tag">HEADERS</span><span class="tag">SPF</span><span class="tag">DKIM</span><span class="tag">DMARC</span><span class="tag">ROUTING</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://toolbox.googleapps.com/apps/messageheader/" target="_blank" class="tool-card cat-email" data-category="email" data-tags="google email header analyzer toolbox gmail">
+      <div class="card-top">
+        <div class="card-icon">📬</div>
+        <div class="card-badge">HEADER</div>
+      </div>
+      <div class="card-name">Google Header Tool</div>
+      <div class="card-url">toolbox.googleapps.com</div>
+      <div class="card-desc">Google Apps Toolbox message header analyzer. Alternative to MHA — use both to cross-reference header findings. Clean visual display of email routing path.</div>
+      <div class="card-tags">
+        <span class="tag">HEADERS</span><span class="tag">GOOGLE</span><span class="tag">ROUTING</span><span class="tag">TIMING</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://mxtoolbox.com" target="_blank" class="tool-card cat-email" data-category="email" data-tags="mxtoolbox mx records spf dkim dmarc blacklist dns email">
+      <div class="card-top">
+        <div class="card-icon">📮</div>
+        <div class="card-badge">MX + DNS</div>
+      </div>
+      <div class="card-name">MXToolbox</div>
+      <div class="card-url">mxtoolbox.com</div>
+      <div class="card-desc">All-in-one email infrastructure checker. Verify MX records, SPF, DKIM, DMARC configuration, and check if a domain or IP is on any blacklists. Essential for phishing sender verification.</div>
+      <div class="card-tags">
+        <span class="tag">MX RECORDS</span><span class="tag">SPF</span><span class="tag">BLACKLIST</span><span class="tag">DNS</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://www.scamnumbers.info" target="_blank" class="tool-card cat-email" data-category="email" data-tags="scam phone number callback toad phishing report">
+      <div class="card-top">
+        <div class="card-icon">📞</div>
+        <div class="card-badge">CALLBACK</div>
+      </div>
+      <div class="card-name">ScamNumbers.info</div>
+      <div class="card-url">scamnumbers.info</div>
+      <div class="card-desc">Look up and report callback phishing phone numbers. Essential for TOAD attack investigation — check if number has prior reports or submit new findings.</div>
+      <div class="card-tags">
+        <span class="tag">PHONE</span><span class="tag">TOAD</span><span class="tag">CALLBACK</span><span class="tag">REPORT</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://urlscan.io" target="_blank" class="tool-card cat-email" data-category="email" data-tags="url scan phishing link analysis screenshot safe">
+      <div class="card-top">
+        <div class="card-icon">🔗</div>
+        <div class="card-badge">URL SCAN</div>
+      </div>
+      <div class="card-name">URLScan.io</div>
+      <div class="card-url">urlscan.io</div>
+      <div class="card-desc">Safely analyze suspicious URLs without visiting them. Takes a screenshot, maps external resources, and checks against threat feeds. Safer than VirusTotal for live phishing links.</div>
+      <div class="card-tags">
+        <span class="tag">URL</span><span class="tag">PHISHING</span><span class="tag">SAFE BROWSE</span><span class="tag">SCREENSHOT</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://www.phishtank.com" target="_blank" class="tool-card cat-email" data-category="email" data-tags="phishtank phishing url database community verified reported">
+      <div class="card-top">
+        <div class="card-icon">🎣</div>
+        <div class="card-badge">PHISH DB</div>
+      </div>
+      <div class="card-name">PhishTank</div>
+      <div class="card-url">phishtank.com</div>
+      <div class="card-desc">Community-driven phishing URL database. Submit suspicious URLs for community verification or check if a URL has already been confirmed as a phishing site by other analysts.</div>
+      <div class="card-tags">
+        <span class="tag">PHISHING</span><span class="tag">URL</span><span class="tag">COMMUNITY</span><span class="tag">VERIFIED</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://eml-analyzer.herokuapp.com" target="_blank" class="tool-card cat-email" data-category="email" data-tags="eml analyzer email source raw paste analysis headers ioc">
+      <div class="card-top">
+        <div class="card-icon">🔬</div>
+        <div class="card-badge">EML ANALYSIS</div>
+      </div>
+      <div class="card-name">EML Analyzer</div>
+      <div class="card-url">eml-analyzer.herokuapp.com</div>
+      <div class="card-desc">Paste raw email source directly into the browser for instant analysis. Extracts headers, URLs, attachments, and IOCs automatically. Web-based version — no install required.</div>
+      <div class="card-tags">
+        <span class="tag">RAW EMAIL</span><span class="tag">IOC EXTRACT</span><span class="tag">HEADERS</span><span class="tag">NO INSTALL</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+  </div>
+
+  <!-- NETWORK / IP TOOLS -->
+  <div class="section-header" data-section="network">
+    <span class="section-label"><span class="section-accent">03 //</span> NETWORK & IP INTELLIGENCE</span>
+    <div class="section-line"></div>
+    <span class="section-count">5 TOOLS</span>
+  </div>
+  <div class="tool-grid" id="network-grid">
+
+    <a href="https://ipinfo.io" target="_blank" class="tool-card cat-network" data-category="network" data-tags="ip geolocation asn company isp vpn privacy">
+      <div class="card-top">
+        <div class="card-icon">🌐</div>
+        <div class="card-badge">GEO + ASN</div>
+      </div>
+      <div class="card-name">IPInfo.io</div>
+      <div class="card-url">ipinfo.io</div>
+      <div class="card-desc">IP geolocation, ASN lookup, company identification, VPN/proxy detection, and abuse data. Quickly identify if a suspicious IP belongs to cloud infrastructure, a VPN, or a residential connection.</div>
+      <div class="card-tags">
+        <span class="tag">GEOLOCATION</span><span class="tag">ASN</span><span class="tag">VPN</span><span class="tag">COMPANY</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://www.shodan.io" target="_blank" class="tool-card cat-network" data-category="network" data-tags="shodan internet scan exposed services ports banners">
+      <div class="card-top">
+        <div class="card-icon">📡</div>
+        <div class="card-badge">INTERNET SCAN</div>
+      </div>
+      <div class="card-name">Shodan</div>
+      <div class="card-url">shodan.io</div>
+      <div class="card-desc">Search engine for internet-connected devices. Look up an IP to see what services and ports are publicly exposed. Useful for understanding attacker infrastructure.</div>
+      <div class="card-tags">
+        <span class="tag">PORTS</span><span class="tag">SERVICES</span><span class="tag">EXPOSED</span><span class="tag">BANNERS</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://whois.domaintools.com" target="_blank" class="tool-card cat-network" data-category="network" data-tags="whois domain registration history owner">
+      <div class="card-top">
+        <div class="card-icon">📋</div>
+        <div class="card-badge">WHOIS</div>
+      </div>
+      <div class="card-name">DomainTools WHOIS</div>
+      <div class="card-url">whois.domaintools.com</div>
+      <div class="card-desc">WHOIS lookup for domain registration details — registrar, creation date, registrant info. Check if a suspicious domain was registered recently (red flag for phishing infrastructure).</div>
+      <div class="card-tags">
+        <span class="tag">WHOIS</span><span class="tag">DOMAIN</span><span class="tag">REGISTRATION</span><span class="tag">AGE</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://www.spamhaus.org/lookup/" target="_blank" class="tool-card cat-network" data-category="network" data-tags="spamhaus blacklist ip domain spam reputation blocklist">
+      <div class="card-top">
+        <div class="card-icon">🚫</div>
+        <div class="card-badge">BLACKLIST</div>
+      </div>
+      <div class="card-name">Spamhaus</div>
+      <div class="card-url">spamhaus.org/lookup</div>
+      <div class="card-desc">Industry standard IP and domain blacklist checker. If an IP or domain appears on Spamhaus blocklists it's a strong indicator of malicious or spam infrastructure. Cross-reference with AbuseIPDB for full picture.</div>
+      <div class="card-tags">
+        <span class="tag">BLACKLIST</span><span class="tag">IP</span><span class="tag">DOMAIN</span><span class="tag">SPAM</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://maclookup.app" target="_blank" class="tool-card cat-network" data-category="network" data-tags="mac address lookup vendor manufacturer device identify hardware oui">
+      <div class="card-top">
+        <div class="card-icon">🔎</div>
+        <div class="card-badge">MAC LOOKUP</div>
+      </div>
+      <div class="card-name">MAC Lookup</div>
+      <div class="card-url">maclookup.app</div>
+      <div class="card-desc">Identify unknown devices on your network by MAC address. Reveals the hardware manufacturer and device type. Essential first step when an unrecognized device appears on your network — used in a real home network investigation.</div>
+      <div class="card-tags">
+        <span class="tag">MAC ADDRESS</span><span class="tag">VENDOR</span><span class="tag">DEVICE ID</span><span class="tag">NETWORK</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+  </div>
+
+  <!-- INTELLIGENCE PLATFORMS -->
+  <div class="section-header" data-section="intel">
+    <span class="section-label"><span class="section-accent">04 //</span> INTELLIGENCE PLATFORMS</span>
+    <div class="section-line"></div>
+    <span class="section-count">3 TOOLS</span>
+  </div>
+  <div class="tool-grid" id="intel-grid">
+
+    <a href="https://app.any.run" target="_blank" class="tool-card cat-intel" data-category="intel" data-tags="sandbox malware analysis interactive dynamic behavior">
+      <div class="card-top">
+        <div class="card-icon">🧪</div>
+        <div class="card-badge">SANDBOX</div>
+      </div>
+      <div class="card-name">ANY.RUN</div>
+      <div class="card-url">app.any.run</div>
+      <div class="card-desc">Interactive online malware sandbox. Upload suspicious files or URLs and watch them execute in a safe environment. See network connections, process behavior, and IOCs in real time.</div>
+      <div class="card-tags">
+        <span class="tag">SANDBOX</span><span class="tag">DYNAMIC</span><span class="tag">BEHAVIOR</span><span class="tag">MALWARE</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://www.hybrid-analysis.com" target="_blank" class="tool-card cat-intel" data-category="intel" data-tags="hybrid analysis malware static dynamic sandbox crowdstrike">
+      <div class="card-top">
+        <div class="card-icon">⚗️</div>
+        <div class="card-badge">SANDBOX</div>
+      </div>
+      <div class="card-name">Hybrid Analysis</div>
+      <div class="card-url">hybrid-analysis.com</div>
+      <div class="card-desc">Free malware analysis service by CrowdStrike. Submit files for both static and dynamic analysis. Generates detailed behavioral reports mapped to MITRE ATT&CK.</div>
+      <div class="card-tags">
+        <span class="tag">STATIC</span><span class="tag">DYNAMIC</span><span class="tag">CROWDSTRIKE</span><span class="tag">REPORTS</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://bazaar.abuse.ch" target="_blank" class="tool-card cat-intel" data-category="intel" data-tags="malware samples hash database abuse.ch bazaar">
+      <div class="card-top">
+        <div class="card-icon">🗄️</div>
+        <div class="card-badge">SAMPLE DB</div>
+      </div>
+      <div class="card-name">MalwareBazaar</div>
+      <div class="card-url">bazaar.abuse.ch</div>
+      <div class="card-desc">Malware sample repository by abuse.ch. Look up file hashes to find known malware samples, check associated threat families, and download samples for analysis.</div>
+      <div class="card-tags">
+        <span class="tag">HASH</span><span class="tag">SAMPLES</span><span class="tag">FAMILIES</span><span class="tag">ABUSE.CH</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+  </div>
+
+  <!-- REFERENCE TOOLS -->
+  <div class="section-header" data-section="reference">
+    <span class="section-label"><span class="section-accent">05 //</span> REFERENCE & REPORTING</span>
+    <div class="section-line"></div>
+    <span class="section-count">4 TOOLS</span>
+  </div>
+  <div class="tool-grid" id="reference-grid">
+
+    <a href="https://www.cyberchef.io" target="_blank" class="tool-card cat-reference" data-category="reference" data-tags="cyberchef decode encode base64 hex transform data">
+      <div class="card-top">
+        <div class="card-icon">🔧</div>
+        <div class="card-badge">DECODE</div>
+      </div>
+      <div class="card-name">CyberChef</div>
+      <div class="card-url">cyberchef.io</div>
+      <div class="card-desc">The Cyber Swiss Army Knife. Decode base64, hex, URL encoding, XOR, and hundreds of other transformations. Essential for analyzing obfuscated phishing content and malware strings.</div>
+      <div class="card-tags">
+        <span class="tag">BASE64</span><span class="tag">HEX</span><span class="tag">DECODE</span><span class="tag">ENCODE</span><span class="tag">TRANSFORM</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://msrc.microsoft.com/report/abuse" target="_blank" class="tool-card cat-reference" data-category="reference" data-tags="microsoft report abuse m365 tenant infrastructure">
+      <div class="card-top">
+        <div class="card-icon">🚨</div>
+        <div class="card-badge">REPORTING</div>
+      </div>
+      <div class="card-name">Microsoft MSRC Abuse</div>
+      <div class="card-url">msrc.microsoft.com/report/abuse</div>
+      <div class="card-desc">Report abuse of Microsoft infrastructure — throwaway M365 tenants, Azure IPs used in phishing campaigns. Microsoft will investigate and shut down abusive tenants.</div>
+      <div class="card-tags">
+        <span class="tag">REPORT</span><span class="tag">M365</span><span class="tag">AZURE</span><span class="tag">TENANT ABUSE</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://apwg.org/reportphishing/" target="_blank" class="tool-card cat-reference" data-category="reference" data-tags="apwg phishing report anti-phishing working group">
+      <div class="card-top">
+        <div class="card-icon">📩</div>
+        <div class="card-badge">REPORTING</div>
+      </div>
+      <div class="card-name">APWG Report</div>
+      <div class="card-url">apwg.org</div>
+      <div class="card-desc">Anti-Phishing Working Group — industry standard phishing report submission. Forward phishing emails to <span class="__cf_email__" data-cfemail="94e6f1e4fbe6e0e4fcfde7fcfdfaf3d4f5e4e3f3bafbe6f3">[email&#160;protected]</span> or submit via web form to contribute to global threat intelligence.</div>
+      <div class="card-tags">
+        <span class="tag">PHISHING</span><span class="tag">REPORT</span><span class="tag">INDUSTRY</span><span class="tag">GLOBAL</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://github.com" target="_blank" class="tool-card cat-reference" data-category="reference" data-tags="github portfolio documentation repository reports homelab">
+      <div class="card-top">
+        <div class="card-icon">💻</div>
+        <div class="card-badge">PORTFOLIO</div>
+      </div>
+      <div class="card-name">GitHub</div>
+      <div class="card-url">github.com</div>
+      <div class="card-desc">Host your SOC portfolio, incident reports, and homelab documentation publicly. Your GitHub repository is the portfolio link you include on your resume and cover letter for Huntress.</div>
+      <div class="card-tags">
+        <span class="tag">PORTFOLIO</span><span class="tag">DOCS</span><span class="tag">REPORTS</span><span class="tag">PUBLIC</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+  </div>
+
+  <!-- OSINT TOOLS -->
+  <div class="section-header" data-section="osint">
+    <span class="section-label"><span class="section-accent">06 //</span> OSINT & RECON</span>
+    <div class="section-line"></div>
+    <span class="section-count">3 TOOLS</span>
+  </div>
+  <div class="tool-grid" id="osint-grid">
+
+    <a href="https://haveibeenpwned.com" target="_blank" class="tool-card cat-osint" data-category="osint" data-tags="hibp breach email password leaked exposed">
+      <div class="card-top">
+        <div class="card-icon">💀</div>
+        <div class="card-badge">BREACH CHECK</div>
+      </div>
+      <div class="card-name">HaveIBeenPwned</div>
+      <div class="card-url">haveibeenpwned.com</div>
+      <div class="card-desc">Check if an email address or password has been exposed in known data breaches. Useful for investigating compromised account scenarios and verifying exposure during incident response.</div>
+      <div class="card-tags">
+        <span class="tag">BREACH</span><span class="tag">EMAIL</span><span class="tag">PASSWORD</span><span class="tag">EXPOSURE</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://www.misp-project.org" target="_blank" class="tool-card cat-osint" data-category="osint" data-tags="misp malware information sharing platform threat intel ioc community">
+      <div class="card-top">
+        <div class="card-icon">🔄</div>
+        <div class="card-badge">THREAT SHARING</div>
+      </div>
+      <div class="card-name">MISP Project</div>
+      <div class="card-url">misp-project.org</div>
+      <div class="card-desc">Malware Information Sharing Platform — open source threat intelligence platform for sharing, storing, and correlating IOCs across organizations and communities. Industry standard for threat intel sharing.</div>
+      <div class="card-tags">
+        <span class="tag">IOC SHARING</span><span class="tag">COMMUNITY</span><span class="tag">CORRELATION</span><span class="tag">OPEN SOURCE</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://centralops.net/co/" target="_blank" class="tool-card cat-osint" data-category="osint" data-tags="centralops domain whois dns email ping traceroute recon">
+      <div class="card-top">
+        <div class="card-icon">🕵️</div>
+        <div class="card-badge">DOMAIN RECON</div>
+      </div>
+      <div class="card-name">CentralOps.net</div>
+      <div class="card-url">centralops.net</div>
+      <div class="card-desc">Free web-based network recon tool. Look up domain ownership, DNS records, email verification, ping, and traceroute all in one place. No install required — runs directly in browser.</div>
+      <div class="card-tags">
+        <span class="tag">WHOIS</span><span class="tag">DNS</span><span class="tag">DOMAIN</span><span class="tag">NO INSTALL</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+  </div>
+
+  <!-- QUICK REFERENCE PANEL -->
+  <div class="section-header">
+    <span class="section-label"><span class="section-accent">07 //</span> QUICK REFERENCE</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="quick-ref">
+    <div class="ref-grid">
+
+      <div class="ref-group">
+        <h4>KEY EVENT IDs</h4>
+        <div class="ref-item"><span class="ref-id">4624</span><span class="ref-desc">Successful logon</span></div>
+        <div class="ref-item"><span class="ref-id">4625</span><span class="ref-desc">Failed logon</span></div>
+        <div class="ref-item"><span class="ref-id">4648</span><span class="ref-desc">Explicit credential logon</span></div>
+        <div class="ref-item"><span class="ref-id">4672</span><span class="ref-desc">Special privileges assigned</span></div>
+        <div class="ref-item"><span class="ref-id">4720</span><span class="ref-desc">User account created</span></div>
+        <div class="ref-item"><span class="ref-id">4722</span><span class="ref-desc">Account enabled</span></div>
+        <div class="ref-item"><span class="ref-id">4732</span><span class="ref-desc">Added to security group</span></div>
+        <div class="ref-item"><span class="ref-id">4740</span><span class="ref-desc">Account lockout</span></div>
+        <div class="ref-item"><span class="ref-id">7036</span><span class="ref-desc">Service started/stopped</span></div>
+      </div>
+
+      <div class="ref-group">
+        <h4>LOGON TYPES</h4>
+        <div class="ref-item"><span class="ref-id">Type 2</span><span class="ref-desc">Interactive (console)</span></div>
+        <div class="ref-item"><span class="ref-id">Type 3</span><span class="ref-desc">Network (SMB)</span></div>
+        <div class="ref-item"><span class="ref-id">Type 4</span><span class="ref-desc">Batch</span></div>
+        <div class="ref-item"><span class="ref-id">Type 5</span><span class="ref-desc">Service account</span></div>
+        <div class="ref-item"><span class="ref-id">Type 7</span><span class="ref-desc">Unlock</span></div>
+        <div class="ref-item"><span class="ref-id">Type 8</span><span class="ref-desc">NetworkCleartext</span></div>
+        <div class="ref-item"><span class="ref-id">Type 10</span><span class="ref-desc">RemoteInteractive (RDP)</span></div>
+        <div class="ref-item"><span class="ref-id">Type 11</span><span class="ref-desc">CachedInteractive</span></div>
+      </div>
+
+      <div class="ref-group">
+        <h4>SPLUNK SEARCHES</h4>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">4625 all</span><span class="ref-desc">Failed logins</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">by acct</span><span class="ref-desc">Target account</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">by src_ip</span><span class="ref-desc">Attacker IP</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">timechart</span><span class="ref-desc">Attack timeline</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">4624 check</span><span class="ref-desc">Success after fail</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">4740</span><span class="ref-desc">Account lockout</span></div>
+      </div>
+
+      <div class="ref-group">
+        <h4>PHISHING IOCs</h4>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">SPF</span><span class="ref-desc">Email auth result</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">DKIM</span><span class="ref-desc">Signature valid?</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">Received</span><span class="ref-desc">Origin IP in headers</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">Reply-To</span><span class="ref-desc">Real reply address</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">Unicode</span><span class="ref-desc">Filter evasion chars</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">onmicrosoft</span><span class="ref-desc">Throwaway M365</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">TOAD</span><span class="ref-desc">Callback phishing</span></div>
+      </div>
+
+      <div class="ref-group">
+        <h4>IR FRAMEWORKS</h4>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">P</span><span class="ref-desc">Preparation</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">I</span><span class="ref-desc">Identification</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">C</span><span class="ref-desc">Containment</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">E</span><span class="ref-desc">Eradication</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">R</span><span class="ref-desc">Recovery</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">L</span><span class="ref-desc">Lessons Learned</span></div>
+        <div class="ref-item" style="margin-top:6px"><span class="ref-id" style="font-size:9px; color: var(--muted);">SANS</span><span class="ref-desc">PICERL above</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px; color: var(--muted);">NIST</span><span class="ref-desc">Prepare/Detect/Respond</span></div>
+      </div>
+
+      <div class="ref-group">
+        <h4>LAB NETWORK</h4>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">SIEM</span><span class="ref-desc">Ubuntu Server</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">DC</span><span class="ref-desc">Windows Server 2019</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">CLIENT</span><span class="ref-desc">Windows 11</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">Splunk</span><span class="ref-desc">Web UI :8000</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">Forwarder</span><span class="ref-desc">Receiver :9997</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">Network</span><span class="ref-desc">VMware Isolated</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:9px">Attack</span><span class="ref-desc">Kali Linux</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BLUE VS RED TEAM REFERENCE -->
+  <div class="section-header">
+    <span class="section-label"><span class="section-accent">08 //</span> BLUE TEAM VS RED TEAM TOOLS</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px;">
+
+    <div class="quick-ref" style="border-color: rgba(0,212,255,0.3);">
+      <div style="font-family: 'Share Tech Mono', monospace; font-size: 11px; color: #00d4ff; letter-spacing: 3px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+        <span style="width: 8px; height: 8px; background: #00d4ff; border-radius: 50%; box-shadow: 0 0 10px #00d4ff; display: inline-block;"></span>
+        BLUE TEAM — DEFENSIVE
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px;">
+          <div style="font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #4a6070; letter-spacing: 2px; padding-bottom: 4px; border-bottom: 1px solid #0f2535;">TOOL</div>
+          <div style="font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #4a6070; letter-spacing: 2px; padding-bottom: 4px; border-bottom: 1px solid #0f2535;">PURPOSE</div>
+        </div>
+
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Splunk</span><span class="ref-desc">SIEM — log aggregation and alerting</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">ELK Stack</span><span class="ref-desc">SIEM — Elasticsearch, Logstash, Kibana</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Security Onion</span><span class="ref-desc">Full NSM + SIEM platform</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Suricata</span><span class="ref-desc">IDS/IPS — network intrusion detection</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Snort</span><span class="ref-desc">IDS/IPS — packet inspection rules</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">OSSEC</span><span class="ref-desc">Host-based intrusion detection (HIDS)</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Zeek / Bro</span><span class="ref-desc">Network traffic analysis and logging</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Wireshark</span><span class="ref-desc">Packet capture and analysis</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Autopsy</span><span class="ref-desc">Digital forensics and disk analysis</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Velociraptor</span><span class="ref-desc">Endpoint visibility and DFIR</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">YARA</span><span class="ref-desc">Malware pattern matching and detection</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">OpenVAS</span><span class="ref-desc">Vulnerability scanning and assessment</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">MISP</span><span class="ref-desc">Threat intelligence sharing platform</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Cuckoo</span><span class="ref-desc">Automated malware sandbox analysis</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">ANY.RUN</span><span class="ref-desc">Interactive online malware sandbox</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Sysmon</span><span class="ref-desc">Windows endpoint enhanced logging</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">VirusTotal</span><span class="ref-desc">IOC reputation and malware scanning</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">AbuseIPDB</span><span class="ref-desc">IP abuse reporting and lookup</span></div>
+
+      </div>
+    </div>
+
+    <div class="quick-ref" style="border-color: rgba(255,107,53,0.3);">
+      <div style="font-family: 'Share Tech Mono', monospace; font-size: 11px; color: #ff6b35; letter-spacing: 3px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+        <span style="width: 8px; height: 8px; background: #ff6b35; border-radius: 50%; box-shadow: 0 0 10px #ff6b35; display: inline-block;"></span>
+        RED TEAM — OFFENSIVE
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px;">
+          <div style="font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #4a6070; letter-spacing: 2px; padding-bottom: 4px; border-bottom: 1px solid #0f2535;">TOOL</div>
+          <div style="font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #4a6070; letter-spacing: 2px; padding-bottom: 4px; border-bottom: 1px solid #0f2535;">PURPOSE</div>
+        </div>
+
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Nmap</span><span class="ref-desc">Network scanning and port discovery</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Metasploit</span><span class="ref-desc">Exploit framework and payload delivery</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Hydra</span><span class="ref-desc">Brute force credential attacks</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">netexec</span><span class="ref-desc">Network execution and SMB attacks</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Gobuster</span><span class="ref-desc">Web directory and subdomain enumeration</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">SQLMap</span><span class="ref-desc">Automated SQL injection testing</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Burp Suite</span><span class="ref-desc">Web app vulnerability testing proxy</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">theHarvester</span><span class="ref-desc">Passive OSINT — local Kali tool</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Recon-NG</span><span class="ref-desc">Web recon framework — local Kali tool</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Aircrack-NG</span><span class="ref-desc">Wireless network cracking</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">John the Ripper</span><span class="ref-desc">Password hash cracking</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Hashcat</span><span class="ref-desc">GPU-accelerated password cracking</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Mimikatz</span><span class="ref-desc">Windows credential dumping</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">BloodHound</span><span class="ref-desc">Active Directory attack path mapping</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Cobalt Strike</span><span class="ref-desc">C2 framework and red team ops</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Shodan</span><span class="ref-desc">Internet recon — exposed services</span></div>
+        <div class="ref-item" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #0f2535;">
+          <span style="font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #4a6070; letter-spacing: 1px;">⚠ DUAL USE — Nmap and Shodan are used by both teams depending on context</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-text">HOME SOC LAB // <span class="footer-accent">ANALYST TOOLKIT v1.0</span></div>
+    <div class="footer-text">SAVE THIS FILE TO YOUR DESKTOP FOR INSTANT ACCESS</div>
+  </footer>
+
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Live clock
+  function updateClock() {
+    try {
+      const now = new Date();
+      const time = now.toTimeString().split(' ')[0];
+      const days = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
+      const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+      const date = `${days[now.getDay()]} ${String(now.getDate()).padStart(2,'0')} ${months[now.getMonth()]} ${now.getFullYear()}`;
+      const clockEl = document.getElementById('clock');
+      const dateEl = document.getElementById('date');
+      if (clockEl) clockEl.textContent = time;
+      if (dateEl) dateEl.textContent = date;
+    } catch(e) {}
+  }
+  window.addEventListener('load', function() {
+    updateClock();
+    setInterval(updateClock, 1000);
+  });
+
+  // Search filter
+  function filterTools() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    document.querySelectorAll('.tool-card').forEach(card => {
+      const searchable = (card.dataset.tags + ' ' + card.querySelector('.card-name').textContent + ' ' + card.querySelector('.card-desc').textContent).toLowerCase();
+      card.style.display = searchable.includes(query) ? 'block' : 'none';
+    });
+  }
+
+  // Category filter
+  function filterCategory(cat, btn) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('searchInput').value = '';
+    document.querySelectorAll('.tool-card').forEach(card => {
+      card.style.display = (cat === 'all' || card.dataset.category === cat) ? 'block' : 'none';
+    });
+    // Show/hide section headers
+    document.querySelectorAll('.section-header[data-section]').forEach(header => {
+      header.style.display = (cat === 'all' || header.dataset.section === cat) ? 'flex' : 'none';
+    });
+  }
+
+  // Clear se
