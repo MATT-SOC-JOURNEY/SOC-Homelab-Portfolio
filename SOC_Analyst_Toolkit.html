@@ -687,13 +687,14 @@
     <button class="filter-tab" onclick="filterCategory('intel', this)">INTELLIGENCE</button>
     <button class="filter-tab" onclick="filterCategory('reference', this)">REFERENCE</button>
     <button class="filter-tab" onclick="filterCategory('osint', this)">OSINT</button>
+    <button class="filter-tab" onclick="showRefManual(this)">BLUE TEAM REFERENCE MANUAL</button>
   </div>
 
   <!-- THREAT INTEL TOOLS -->
   <div class="section-header" data-section="threat">
     <span class="section-label"><span class="section-accent">01 //</span> THREAT INTELLIGENCE</span>
     <div class="section-line"></div>
-    <span class="section-count">4 TOOLS</span>
+    <span class="section-count">5 TOOLS</span>
   </div>
   <div class="tool-grid" id="threat-grid">
 
@@ -1127,96 +1128,14 @@
 
   </div>
 
-  <!-- BLUE VS RED TEAM REFERENCE -->
-  <div class="section-header">
-    <span class="section-label"><span class="section-accent">08 //</span> BLUE TEAM VS RED TEAM TOOLS</span>
-    <div class="section-line"></div>
-  </div>
-
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px;">
-
-    <div class="quick-ref" style="border-color: rgba(0,212,255,0.3);">
-      <div style="font-family: 'Share Tech Mono', monospace; font-size: 11px; color: #00d4ff; letter-spacing: 3px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-        <span style="width: 8px; height: 8px; background: #00d4ff; border-radius: 50%; box-shadow: 0 0 10px #00d4ff; display: inline-block;"></span>
-        BLUE TEAM — DEFENSIVE
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px;">
-          <div style="font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #4a6070; letter-spacing: 2px; padding-bottom: 4px; border-bottom: 1px solid #0f2535;">TOOL</div>
-          <div style="font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #4a6070; letter-spacing: 2px; padding-bottom: 4px; border-bottom: 1px solid #0f2535;">PURPOSE</div>
-        </div>
-
-        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Splunk</span><span class="ref-desc">SIEM — log aggregation and alerting</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px;">ELK Stack</span><span class="ref-desc">SIEM — Elasticsearch, Logstash, Kibana</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Security Onion</span><span class="ref-desc">Full NSM + SIEM platform</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Suricata</span><span class="ref-desc">IDS/IPS — network intrusion detection</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Snort</span><span class="ref-desc">IDS/IPS — packet inspection rules</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px;">OSSEC</span><span class="ref-desc">Host-based intrusion detection (HIDS)</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Zeek / Bro</span><span class="ref-desc">Network traffic analysis and logging</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Wireshark</span><span class="ref-desc">Packet capture and analysis</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Autopsy</span><span class="ref-desc">Digital forensics and disk analysis</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Velociraptor</span><span class="ref-desc">Endpoint visibility and DFIR</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px;">YARA</span><span class="ref-desc">Malware pattern matching and detection</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px;">OpenVAS</span><span class="ref-desc">Vulnerability scanning and assessment</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px;">MISP</span><span class="ref-desc">Threat intelligence sharing platform</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Cuckoo</span><span class="ref-desc">Automated malware sandbox analysis</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px;">ANY.RUN</span><span class="ref-desc">Interactive online malware sandbox</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Sysmon</span><span class="ref-desc">Windows endpoint enhanced logging</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px;">VirusTotal</span><span class="ref-desc">IOC reputation and malware scanning</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px;">AbuseIPDB</span><span class="ref-desc">IP abuse reporting and lookup</span></div>
-
-      </div>
-    </div>
-
-    <div class="quick-ref" style="border-color: rgba(255,107,53,0.3);">
-      <div style="font-family: 'Share Tech Mono', monospace; font-size: 11px; color: #ff6b35; letter-spacing: 3px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-        <span style="width: 8px; height: 8px; background: #ff6b35; border-radius: 50%; box-shadow: 0 0 10px #ff6b35; display: inline-block;"></span>
-        RED TEAM — OFFENSIVE
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px;">
-          <div style="font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #4a6070; letter-spacing: 2px; padding-bottom: 4px; border-bottom: 1px solid #0f2535;">TOOL</div>
-          <div style="font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #4a6070; letter-spacing: 2px; padding-bottom: 4px; border-bottom: 1px solid #0f2535;">PURPOSE</div>
-        </div>
-
-        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Nmap</span><span class="ref-desc">Network scanning and port discovery</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Metasploit</span><span class="ref-desc">Exploit framework and payload delivery</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Hydra</span><span class="ref-desc">Brute force credential attacks</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">netexec</span><span class="ref-desc">Network execution and SMB attacks</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Gobuster</span><span class="ref-desc">Web directory and subdomain enumeration</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">SQLMap</span><span class="ref-desc">Automated SQL injection testing</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Burp Suite</span><span class="ref-desc">Web app vulnerability testing proxy</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">theHarvester</span><span class="ref-desc">Passive OSINT — local Kali tool</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Recon-NG</span><span class="ref-desc">Web recon framework — local Kali tool</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Aircrack-NG</span><span class="ref-desc">Wireless network cracking</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">John the Ripper</span><span class="ref-desc">Password hash cracking</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Hashcat</span><span class="ref-desc">GPU-accelerated password cracking</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Mimikatz</span><span class="ref-desc">Windows credential dumping</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">BloodHound</span><span class="ref-desc">Active Directory attack path mapping</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Cobalt Strike</span><span class="ref-desc">C2 framework and red team ops</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Shodan</span><span class="ref-desc">Internet recon — exposed services</span></div>
-        <div class="ref-item" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #0f2535;">
-          <span style="font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #4a6070; letter-spacing: 1px;">⚠ DUAL USE — Nmap and Shodan are used by both teams depending on context</span>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-
   <!-- STUDIES & REFERENCE SECTION -->
-  <div class="container" style="margin-top:40px;">
-    <div class="section-header" style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
-      <div style="width:4px;height:40px;background:linear-gradient(180deg,#00d4ff,#7b2fff);border-radius:2px;"></div>
-      <div>
-        <div style="font-size:11px;letter-spacing:3px;color:#7b2fff;font-weight:700;margin-bottom:4px;">QUICK REFERENCE</div>
-        <div style="font-size:22px;font-weight:800;color:#e2e8f0;letter-spacing:1px;">STUDIES & REFERENCE</div>
-      </div>
-    </div>
+  <div class="section-header" id="blue-team-ref-manual" style="display:none;">
+    <span class="section-label"><span class="section-accent">07 //</span> BLUE TEAM REFERENCE MANUAL</span>
+    <div class="section-line"></div>
+    <span class="section-count">10 TABS</span>
+  </div>
 
-    <!-- Tab Navigation -->
+  <!-- Tab Navigation -->
     <div style="display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;">
       <button onclick="showStudyTab('ports')" id="tab-ports" class="study-tab active-tab">⚡ Ports & Protocols</button>
       <button onclick="showStudyTab('splunk')" id="tab-splunk" class="study-tab">🔍 Splunk SPL</button>
@@ -1740,7 +1659,7 @@ run</div>
         </div>
         <div class="study-card">
           <div class="study-card-title">📧 Email Header Analysis</div>
-          <div class="study-item"><span class="port-num">From</span><span class="port-desc">Display name — can be anything. NEVER trust just the display name. Always check the actual email address behind it. Example: "PayPal Security" &lt;attacker@gmail.com&gt;</span></div>
+          <div class="study-item"><span class="port-num">From</span><span class="port-desc">Display name — can be anything. NEVER trust just the display name. Always check the actual email address behind it. Example: "PayPal Security" &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1170656570727a746351767c70787d3f727e7c">[email&#160;protected]</a>&gt;</span></div>
           <div class="study-item"><span class="port-num">Mailed-By</span><span class="port-desc">Actual sending server domain. If mailed-by differs from From domain — red flag. In Santander investigation mailed-by matched santander.us — confirmed legitimate.</span></div>
           <div class="study-item"><span class="port-num">Signed-By</span><span class="port-desc">DKIM signature domain. Cryptographic proof email came from that domain's servers. Cannot be easily faked. Santander email was signed-by santander.us — strong legitimacy indicator.</span></div>
           <div class="study-item"><span class="port-num">SPF</span><span class="port-desc">Sender Policy Framework — confirms sending IP is authorized by domain. PASS = IP is on domain's approved sender list. FAIL = possible spoofing. Check in Authentication-Results header.</span></div>
@@ -1782,7 +1701,7 @@ run</div>
           <div class="study-item"><span class="port-num">IP</span><span class="port-desc">Malicious IP addresses. Submit to: VirusTotal, AbuseIPDB, Cisco Talos. Example: 142.251.189.83 from your phishing investigation was Google infrastructure being abused.</span></div>
           <div class="study-item"><span class="port-num">Domain</span><span class="port-desc">Malicious domains. Submit to: VirusTotal, URLScan.io, PhishTank. Check registration date — very new domains are suspicious.</span></div>
           <div class="study-item"><span class="port-num">Hash</span><span class="port-desc">MD5/SHA256 file hashes. Submit to: VirusTotal, MalwareBazaar. Uniquely identifies a file regardless of filename. Malware changes filenames but hash stays the same.</span></div>
-          <div class="study-item"><span class="port-num">Email</span><span class="port-desc">Malicious sender addresses. Submit to: VirusTotal. You submitted dipesh34979rana@gmail.com from your Geek Squad phishing investigation.</span></div>
+          <div class="study-item"><span class="port-num">Email</span><span class="port-desc">Malicious sender addresses. Submit to: VirusTotal. You submitted <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7d19140d180e154e49444a440f1c131c3d1a101c1411531e1210">[email&#160;protected]</a> from your Geek Squad phishing investigation.</span></div>
           <div class="study-item"><span class="port-num">Phone</span><span class="port-desc">Callback scam numbers. Submit to: ScamNumbers.info. You were first reporter for +1 803 843 9754 from your TOAD phishing investigation.</span></div>
           <div class="study-item"><span class="port-num">URL</span><span class="port-desc">Malicious URLs. Submit to: URLScan.io, VirusTotal, PhishTank. Always analyze in a sandbox — never click directly.</span></div>
         </div>
@@ -2092,6 +2011,83 @@ run</div>
       </div>
     </div>
 
+  <!-- BLUE VS RED TEAM REFERENCE -->
+  <div class="section-header">
+    <span class="section-label"><span class="section-accent">08 //</span> BLUE TEAM VS RED TEAM REFERENCE</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px;">
+
+    <div class="quick-ref" style="border-color: rgba(0,212,255,0.3);">
+      <div style="font-family: 'Share Tech Mono', monospace; font-size: 11px; color: #00d4ff; letter-spacing: 3px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+        <span style="width: 8px; height: 8px; background: #00d4ff; border-radius: 50%; box-shadow: 0 0 10px #00d4ff; display: inline-block;"></span>
+        BLUE TEAM — DEFENSIVE
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px;">
+          <div style="font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #4a6070; letter-spacing: 2px; padding-bottom: 4px; border-bottom: 1px solid #0f2535;">TOOL</div>
+          <div style="font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #4a6070; letter-spacing: 2px; padding-bottom: 4px; border-bottom: 1px solid #0f2535;">PURPOSE</div>
+        </div>
+
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Splunk</span><span class="ref-desc">SIEM — log aggregation and alerting</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">ELK Stack</span><span class="ref-desc">SIEM — Elasticsearch, Logstash, Kibana</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Security Onion</span><span class="ref-desc">Full NSM + SIEM platform</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Suricata</span><span class="ref-desc">IDS/IPS — network intrusion detection</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Snort</span><span class="ref-desc">IDS/IPS — packet inspection rules</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">OSSEC</span><span class="ref-desc">Host-based intrusion detection (HIDS)</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Zeek / Bro</span><span class="ref-desc">Network traffic analysis and logging</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Wireshark</span><span class="ref-desc">Packet capture and analysis</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Autopsy</span><span class="ref-desc">Digital forensics and disk analysis</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Velociraptor</span><span class="ref-desc">Endpoint visibility and DFIR</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">YARA</span><span class="ref-desc">Malware pattern matching and detection</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">OpenVAS</span><span class="ref-desc">Vulnerability scanning and assessment</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">MISP</span><span class="ref-desc">Threat intelligence sharing platform</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Cuckoo</span><span class="ref-desc">Automated malware sandbox analysis</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">ANY.RUN</span><span class="ref-desc">Interactive online malware sandbox</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">Sysmon</span><span class="ref-desc">Windows endpoint enhanced logging</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">VirusTotal</span><span class="ref-desc">IOC reputation and malware scanning</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px;">AbuseIPDB</span><span class="ref-desc">IP abuse reporting and lookup</span></div>
+
+      </div>
+    </div>
+
+    <div class="quick-ref" style="border-color: rgba(255,107,53,0.3);">
+      <div style="font-family: 'Share Tech Mono', monospace; font-size: 11px; color: #ff6b35; letter-spacing: 3px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+        <span style="width: 8px; height: 8px; background: #ff6b35; border-radius: 50%; box-shadow: 0 0 10px #ff6b35; display: inline-block;"></span>
+        RED TEAM — OFFENSIVE
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px;">
+          <div style="font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #4a6070; letter-spacing: 2px; padding-bottom: 4px; border-bottom: 1px solid #0f2535;">TOOL</div>
+          <div style="font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #4a6070; letter-spacing: 2px; padding-bottom: 4px; border-bottom: 1px solid #0f2535;">PURPOSE</div>
+        </div>
+
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Nmap</span><span class="ref-desc">Network scanning and port discovery</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Metasploit</span><span class="ref-desc">Exploit framework and payload delivery</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Hydra</span><span class="ref-desc">Brute force credential attacks</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">netexec</span><span class="ref-desc">Network execution and SMB attacks</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Gobuster</span><span class="ref-desc">Web directory and subdomain enumeration</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">SQLMap</span><span class="ref-desc">Automated SQL injection testing</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Burp Suite</span><span class="ref-desc">Web app vulnerability testing proxy</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">theHarvester</span><span class="ref-desc">Passive OSINT — local Kali tool</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Recon-NG</span><span class="ref-desc">Web recon framework — local Kali tool</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Aircrack-NG</span><span class="ref-desc">Wireless network cracking</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">John the Ripper</span><span class="ref-desc">Password hash cracking</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Hashcat</span><span class="ref-desc">GPU-accelerated password cracking</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Mimikatz</span><span class="ref-desc">Windows credential dumping</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">BloodHound</span><span class="ref-desc">Active Directory attack path mapping</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Cobalt Strike</span><span class="ref-desc">C2 framework and red team ops</span></div>
+        <div class="ref-item"><span class="ref-id" style="font-size:10px; color: #ff6b35;">Shodan</span><span class="ref-desc">Internet recon — exposed services</span></div>
+        <div class="ref-item" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #0f2535;">
+          <span style="font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #4a6070; letter-spacing: 1px;">⚠ DUAL USE — Nmap and Shodan are used by both teams depending on context</span>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
   <!-- FOOTER -->
@@ -2102,8 +2098,8 @@ run</div>
 
 </div>
 
+
 <script>
-  // Live clock
   function updateClock() {
     const now = new Date();
     const h = String(now.getHours()).padStart(2,'0');
@@ -2111,17 +2107,12 @@ run</div>
     const s = String(now.getSeconds()).padStart(2,'0');
     const days = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
     const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
-    const day = days[now.getDay()];
-    const date = String(now.getDate()).padStart(2,'0');
-    const month = months[now.getMonth()];
-    const year = now.getFullYear();
     document.getElementById('clock').textContent = `${h}:${m}:${s}`;
-    document.getElementById('date-display').textContent = `${day} ${date} ${month} ${year}`;
+    document.getElementById('date-display').textContent = `${days[now.getDay()]} ${String(now.getDate()).padStart(2,'0')} ${months[now.getMonth()]} ${now.getFullYear()}`;
   }
   updateClock();
   setInterval(updateClock, 1000);
 
-  // Search filter
   function filterTools() {
     const query = document.getElementById('searchInput').value.toLowerCase();
     document.querySelectorAll('.tool-card').forEach(card => {
@@ -2130,7 +2121,6 @@ run</div>
     });
   }
 
-  // Category filter
   function filterCategory(cat, btn) {
     document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
     btn.classList.add('active');
@@ -2138,29 +2128,37 @@ run</div>
     document.querySelectorAll('.tool-card').forEach(card => {
       card.style.display = (cat === 'all' || card.dataset.category === cat) ? 'block' : 'none';
     });
-    // Show/hide section headers
     document.querySelectorAll('.section-header[data-section]').forEach(header => {
       header.style.display = (cat === 'all' || header.dataset.section === cat) ? 'flex' : 'none';
     });
+    // Restore ref manual section header visibility when switching back to tool tabs
+    document.getElementById('blue-team-ref-manual').style.display = 'none';
   }
 
-  // Clear search
-  function clearSearch() {
-    document.getElementById('searchInput').value = '';
-    document.querySelectorAll('.tool-card').forEach(card => {
-      card.style.display = 'block';
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('searchInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { this.value = ''; filterTools(); }
     });
-    document.querySelectorAll('.section-header[data-section]').forEach(header => {
-      header.style.display = 'flex';
-    });
-  }
+  });
 
-  // Study tabs
   function showStudyTab(tab) {
     document.querySelectorAll('.study-panel').forEach(p => p.style.display = 'none');
     document.querySelectorAll('.study-tab').forEach(t => t.classList.remove('active-tab'));
     document.getElementById('study-' + tab).style.display = 'block';
     document.getElementById('tab-' + tab).classList.add('active-tab');
+  }
+
+  function showRefManual(btn) {
+    // Deactivate all filter tabs
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    // Hide all tool cards and their section headers
+    document.querySelectorAll('.tool-card').forEach(card => card.style.display = 'none');
+    document.querySelectorAll('.section-header[data-section]').forEach(h => h.style.display = 'none');
+    // Show the reference manual section
+    document.getElementById('blue-team-ref-manual').style.display = 'flex';
+    // Scroll to top
+    window.scrollTo({top: 0, behavior: 'smooth'});
   }
 </script>
 </body>
