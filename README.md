@@ -18,9 +18,10 @@ A custom-built reference tool compiling essential blue team resources including 
 ## 📁 Incident Reports
 | Report | Type | Link |
 |--------|------|------|
-| SMB Brute Force Detection — Feb 2026 | Threat Detection | [View Report](https://github.com/MATT-SOC-JOURNEY/SOC-Homelab-Portfolio/blob/main/brute_force_incident_report.docx) |
-| Phishing Email Investigation — Mar 2026 | Phishing Analysis | [View Report](https://github.com/MATT-SOC-JOURNEY/SOC-Homelab-Portfolio/blob/main/phishing_investigation_report_final.docx) |
-| Host Hardening & Network IR — Mar 2026 | Incident Response | [View Report](https://github.com/MATT-SOC-JOURNEY/SOC-Homelab-Portfolio/blob/main/host_hardening_incident_report.docx) |
+| SMB Brute Force Detection — Feb 2026 | Threat Detection | [View Report](https://github.com/MATT-SOC-JOURNEY/SOC-Homelab-Portfolio/blob/main/SMB_Brute_Force_Incident_Report.docx) |
+| Geek Squad / PayPal TOAD Callback Phishing — Mar 2026 | Phishing Analysis | [View Report](https://github.com/MATT-SOC-JOURNEY/SOC-Homelab-Portfolio/blob/main/GeekSquad_PayPal_TOAD_Incident.docx) |
+| Host Hardening & Network IR — Mar 2026 | Incident Response | [View Report](https://github.com/MATT-SOC-JOURNEY/SOC-Homelab-Portfolio/blob/main/Host_Hardening_Incident.docx) |
+| PayPal TOAD Scam — Legitimate Infrastructure Abuse — Apr 2026 | Phishing Analysis | [View Report](https://github.com/MATT-SOC-JOURNEY/SOC-Homelab-Portfolio/blob/main/PayPal_TOAD_Incident_Report.docx) |
 
 ---
 
@@ -39,14 +40,16 @@ A custom-built reference tool compiling essential blue team resources including 
 ---
 
 ## 🛠️ Tools & Platforms
-- Splunk SIEM, Universal Forwarder
-- ESET Endpoint Security
+- Splunk SIEM, Universal Forwarder, Sysmon
+- ESET Endpoint Security (Ultimate)
 - Sysinternals (Process Explorer, Autoruns, ProcMon)
 - Kali Linux, netexec (used for brute force simulation)
 - VirusTotal, AbuseIPDB, MXToolbox, URLScan.io, ScamNumbers.info
+- IPInfo.io, MHA Header Analyzer, Google Message Header Tool
 - TryHackMe — Sapphire League
 - LetsDefend
 - Cisco Networking Academy
+- CyberDefenders
 
 ---
 
@@ -56,6 +59,7 @@ A custom-built reference tool compiling essential blue team resources including 
 - TryHackMe — 18 Badges including Session Held (Epic 0.7%), Defensive Toolsmith (Rare 5%), Phish Hunter (Rare 4.6%)
 - LetsDefend SOC Fundamentals — March 2026
 - LetsDefend Network Fundamentals — March 2026
+- CyberDefenders — Web Strike Room Completed (Wireshark investigation)
 - Cisco Networking Academy — IT Customer Support Basics
 - Cisco Networking Academy — Computer Hardware Basics
 
